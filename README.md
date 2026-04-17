@@ -15,6 +15,5 @@
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=harryc295&theme=bear&no-frame=false&no-bg=true&margin-w=4)
 
----
-[![](https://komarev.com/ghpvc/?username=harryc295&icon=9&color=0)](https://visitcount.itsvg.in)
+
 
