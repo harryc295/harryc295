@@ -47,13 +47,43 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | ☁️ **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana — deployed on Minikube + K3s edge |
 | 🟡 **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
 | 🛡️ **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
-| 📦 **12 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| 🏦 **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
+| 📦 **13 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
 ## Projects
 
-### 001 — Untangle — Productivity App
+### 001 — Full-Scope Penetration Test *(Authorised Engagement)*
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square) ![CVE](https://img.shields.io/badge/CVE--2025--49132-CVSS%209.8-critical?style=flat-square)
+
+Black-box engagement covering a web application, subdomains, and four cloud-hosted targets. Discovered and responsibly disclosed a critical unauthenticated RCE vulnerability now recorded as a CVE.
+
+- Identified **CVE-2025-49132** — unauthenticated RCE in Pterodactyl Panel, CVSS 9.8, now patched
+- Enumerated **269 undocumented API endpoints** on port 8080 using ffuf
+- Full OAuth2 security review: redirect_uri bypass, missing state parameter, absent PKCE
+- Delivered 18-page executive and technical report with full remediation roadmap
+
+`Burp Suite Community` `Metasploit` `ffuf` `Nmap` `OAuth2`
+
+---
+
+### 002 — Ideal4Finance — FCA DISP Complaints Platform *(Internship, Present)*
+![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Type](https://img.shields.io/badge/type-full--stack-blue?style=flat-square) ![FCA](https://img.shields.io/badge/FCA-DISP%20Regulated-blueviolet?style=flat-square)
+
+Core developer on an FCA-regulated financial complaints management platform built from scratch. Full architecture responsibility alongside security implementation and delivery pipeline.
+
+- Monorepo NestJS 11 + Next.js 16 with PostgreSQL and Drizzle ORM
+- 16 workflow stages, 32 state transitions across 6 RBAC roles
+- SHA-256 evidence integrity hashing and immutable audit log
+- Magic-link authentication, BullMQ cron scheduling, Docker Compose deployment
+- CI pipeline with npm audit gate and security dependency scanning
+
+`NestJS 11` `Next.js 16` `PostgreSQL` `BullMQ` `Docker` `Drizzle ORM` `TypeScript`
+
+---
+
+### 003 — Untangle — Productivity App
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 "Analyse to action" — a clarity method productivity app built in TypeScript. Designed to help turn messy thinking into structured action.
@@ -64,7 +94,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 ---
 
-### 002 — Automated AWS CIS Compliance Remediation Engine
+### 004 — Automated AWS CIS Compliance Remediation Engine
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CIS%20Benchmark-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![IaC](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 
 Serverless auto-remediation engine that detects and fixes four high-priority CIS Benchmark findings every 6 hours — fully deployed on the AWS free tier via a single `terraform apply`.
@@ -82,7 +112,7 @@ Serverless auto-remediation engine that detects and fixes four high-priority CIS
 
 ---
 
-### 003 — AWS EC2 Price Tracker — Live API Pipeline
+### 005 — AWS EC2 Price Tracker — Live API Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-boto3-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub%20Actions-daily%20cron-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 
 Two-phase FinOps automation project — started with a static proof of concept, evolved into a fully live AWS API integration.
@@ -96,7 +126,7 @@ Two-phase FinOps automation project — started with a static proof of concept, 
 
 ---
 
-### 004 — Cloud Native Platform *(University)*
+### 006 — Cloud Native Platform *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-cloud%20engineering-blueviolet?style=flat-square) ![K8s](https://img.shields.io/badge/Kubernetes-Minikube%20%2B%20K3s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 
 Three-tier application deployed on Kubernetes with full observability, serverless compute, edge simulation, and zero-trust RBAC architecture.
@@ -111,7 +141,7 @@ Three-tier application deployed on Kubernetes with full observability, serverles
 
 ---
 
-### 005 — Enterprise Active Directory Lab *(University)*
+### 007 — Enterprise Active Directory Lab *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white) ![AD](https://img.shields.io/badge/Active%20Directory-Two--Domain%20Forest-0078D4?style=flat-square&logo=windows&logoColor=white)
 
 Two-domain Active Directory forest simulating an enterprise network with RBAC, cross-platform authentication, automated deployment, and validated security controls.
@@ -127,7 +157,7 @@ Two-domain Active Directory forest simulating an enterprise network with RBAC, c
 
 ---
 
-### 006 — DevSecOps n8n Workflow Platform
+### 008 — DevSecOps n8n Workflow Platform
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square) ![AI](https://img.shields.io/badge/Local%20LLM-Llama%203.2-ff6b35?style=flat-square)
 
 Self-hosted automation platform combining n8n with a local Llama 3.2 model via Ollama. Runs a daily security news digest pipeline — RSS to formatted HTML to Gmail — entirely locally. Also wires DevSecOps pipeline hooks and vulnerability triage workflows.
@@ -138,7 +168,7 @@ Self-hosted automation platform combining n8n with a local Llama 3.2 model via O
 
 ---
 
-### 007 — Nessus Vulnerability Pipeline
+### 009 — Nessus Vulnerability Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square)
 
 Python CLI wrapping the Nessus REST API — automates scan launches, parses results, extracts critical findings, sends Slack webhook alerts, and generates CSV compliance reports.
@@ -149,7 +179,7 @@ Python CLI wrapping the Nessus REST API — automates scan launches, parses resu
 
 ---
 
-### 008 — OSINT Threat Intelligence Dashboard
+### 010 — OSINT Threat Intelligence Dashboard
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-threat%20intelligence-8B0000?style=flat-square)
 
 Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. Enriches IOCs — IPs, domains, file hashes — with reputation scores, geolocation, and WHOIS data. Outputs structured JSON and a live HTML dashboard for incident response triage.
@@ -160,7 +190,7 @@ Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. E
 
 ---
 
-### 009 — BinaryHammer — PE Malware Analysis Tool
+### 011 — BinaryHammer — PE Malware Analysis Tool
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Type](https://img.shields.io/badge/type-malware%20analysis-darkred?style=flat-square)
 
 Open-source C++ tool for static malware analysis — loads a PE binary and immediately surfaces disassembly, pseudo-code, imports/exports, sections, hex view, and strings. Built to remove manual overhead so analysis time is spent on decisions, not mechanics.
@@ -175,7 +205,7 @@ Open-source C++ tool for static malware analysis — loads a PE binary and immed
 
 ---
 
-### 010 — ColdVault — Offline Password Manager
+### 012 — ColdVault — Offline Password Manager
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Crypto](https://img.shields.io/badge/AES--256--GCM-Zero%20Knowledge-green?style=flat-square) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-screen UI, multi-vault support, auto-lock, PrintScreen blocking, secure clipboard clearing, password generation, and organised login/card/note management.
@@ -186,7 +216,7 @@ Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-s
 
 ---
 
-### 011 — Benji Protocol — Offensive Security Toolkit *(University)*
+### 013 — Benji Protocol — Offensive Security Toolkit *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-pentest%20toolkit-red?style=flat-square)
 
 Four-tool CLI security toolkit built across a five-week assessed penetration testing module. Fully headless and automatable via argparse.
@@ -201,15 +231,6 @@ Four-tool CLI security toolkit built across a five-week assessed penetration tes
 `Python` `argparse` `Sockets` `Paramiko` `Requests` `Offensive Security`
 
 **Repo:** [github.com/harryc295/COM5413_Security_Portfolio](https://github.com/harryc295/COM5413_Security_Portfolio)
-
----
-
-### 012 — GitBud Streak Guardian
-![Status](https://img.shields.io/badge/status-active-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-automation-yellow?style=flat-square) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
-
-Automated GitHub streak maintenance repo for GitBud — keeps contribution activity consistent via scheduled automation.
-
-**Repo:** [github.com/harryc295/gitbud-streak-guardian](https://github.com/harryc295/gitbud-streak-guardian) *(private)*
 
 ---
 
@@ -337,8 +358,8 @@ Personal cyber range running on VirtualBox — used daily for AD deployment, mal
 
 ## Experience
 
-**Full-Stack Developer — Software Internship** *(2026 — Present)*
-Building a financial complaints management platform from the ground up. Core contributor responsible for architecture, security implementation, and CI pipeline. NestJS 11 + Next.js 16 + PostgreSQL + Docker.
+**Full-Stack Developer — Ideal4Finance** *(2026 — Present · Internship)*
+Building an FCA DISP-aligned financial complaints platform from the ground up. Core contributor responsible for architecture, security implementation, and CI pipeline. NestJS 11 + Next.js 16 + PostgreSQL + Docker.
 
 **Penetration Tester — Authorised Client Engagement** *(June 2026)*
 Full-scope black-box test across web, subdomains, and four cloud-hosted targets. Discovered CVE-2025-49132 (Critical CVSS 9.8), enumerated 269 undocumented endpoints, full OAuth2 audit. Delivered 18-page executive and technical report with remediation roadmap.
