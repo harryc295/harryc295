@@ -48,7 +48,8 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | 🏦 **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | ☁️ **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana — deployed on Minikube + K3s edge |
 | 🟡 **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
-| 📦 **13+ Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| 🛡️ **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed, free tier |
+| 📦 **14+ Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -217,6 +218,24 @@ Designed and evaluated competing WAN architectures (MPLS vs SD-WAN/SASE) for a g
 Automation platform built around n8n for integrating DevSecOps pipelines — automated security alerting, CI/CD pipeline hooks, and vulnerability triage workflows. Architecture in progress.
 
 **Repo:** [github.com/harryc295/devsecops-n8n-workflow-platform](https://github.com/harryc295/devsecops-n8n-workflow-platform)
+
+---
+
+### 014 — Automated AWS CIS Compliance Remediation Engine
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CIS%20Benchmark-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![IaC](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=flat-square&logo=terraform&logoColor=white)
+
+Serverless auto-remediation engine that detects and fixes four high-priority CIS Benchmark findings every 6 hours — fully deployed on the AWS free tier via a single `terraform apply`.
+
+- EventBridge cron → Lambda (Python 3.11, 10 min timeout) pipeline running at 6-hour intervals
+- **Check 1:** S3 account-level public access block enforcement
+- **Check 2:** EC2 security groups — auto-revoke 0.0.0.0/0 ingress on ports 22, 3389, 1433, 3306
+- **Check 3:** IAM users with active access keys but no MFA → keys deactivated automatically
+- **Check 4:** VPCs missing flow logs → flow log created and directed to CloudWatch
+- DynamoDB audit trail per remediation action, S3 compliance JSON report, SNS email/Slack alerts
+
+`Python` `Terraform` `AWS Lambda` `EventBridge` `DynamoDB` `S3` `SNS` `IAM` `CIS Benchmark` `DevSecOps`
+
+**Repo:** [github.com/harryc295/automated-aws-cis-compliance](https://github.com/harryc295/automated-aws-cis-compliance)
 
 ---
 
