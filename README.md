@@ -283,6 +283,8 @@ Personal cyber range running on VirtualBox — used daily for AD deployment, mal
 ![Ollama](https://img.shields.io/badge/Ollama-Llama%203.2-black?style=flat-square)
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-008FBA?style=flat-square&logo=cmake&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
+![GitLab](https://img.shields.io/badge/GitLab-181717?style=flat-square&logo=gitlab&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05033?style=flat-square&logo=git&logoColor=white)
 
 ### Full-Stack
@@ -315,6 +317,8 @@ Personal cyber range running on VirtualBox — used daily for AD deployment, mal
 ![OpenVAS](https://img.shields.io/badge/OpenVAS-vuln%20scanning-green?style=flat-square)
 ![Nuclei](https://img.shields.io/badge/Nuclei-templated%20scanning-9933FF?style=flat-square)
 ![Snort](https://img.shields.io/badge/Snort-IDS%2FIPS-CC0000?style=flat-square)
+![Wfuzz](https://img.shields.io/badge/Wfuzz-web%20fuzzer-red?style=flat-square)
+![Fail2ban](https://img.shields.io/badge/Fail2ban-brute%20force%20protection-yellow?style=flat-square)
 ![Splunk](https://img.shields.io/badge/Splunk-SIEM-000000?style=flat-square&logo=splunk&logoColor=white)
 
 ### Infrastructure & Identity
@@ -325,6 +329,9 @@ Personal cyber range running on VirtualBox — used daily for AD deployment, mal
 ![RBAC](https://img.shields.io/badge/RBAC-access%20control-green?style=flat-square)
 ![SSSD](https://img.shields.io/badge/SSSD-linux%20domain%20join-orange?style=flat-square)
 ![Zero-Trust](https://img.shields.io/badge/Zero--Trust-architecture-blueviolet?style=flat-square)
+![Cisco](https://img.shields.io/badge/Cisco-networking-049fd9?style=flat-square&logo=cisco&logoColor=black)
+![SD-WAN](https://img.shields.io/badge/SD--WAN%20%2F%20SASE-network-blue?style=flat-square)
+![MPLS](https://img.shields.io/badge/MPLS-legacy%20WAN-grey?style=flat-square)
 ![DNS](https://img.shields.io/badge/DNS-networking-lightgrey?style=flat-square)
 ![VPN](https://img.shields.io/badge/VPN%20%2F%20VLAN-segmentation-00b4d8?style=flat-square)
 
