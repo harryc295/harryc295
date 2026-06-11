@@ -154,6 +154,8 @@ Python wrapper for the Nessus REST API automating scan launches, result parsing,
 
 `Python` `Nessus API` `REST` `Slack API` `CSV` `DevSecOps`
 
+**Repo:** [github.com/harryc295/nessuspipeline](https://github.com/harryc295/nessuspipeline)
+
 ---
 
 ### 008 — OSINT Threat Intelligence Dashboard
@@ -162,6 +164,8 @@ Python wrapper for the Nessus REST API automating scan launches, result parsing,
 Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB APIs. Enriches IOCs — IPs, domains, file hashes — with reputation scores, geolocation, and WHOIS data. Outputs structured JSON reports and a live HTML dashboard for rapid triage during incident response.
 
 `Python` `VirusTotal API` `Shodan` `AbuseIPDB` `OSINT` `IOC Enrichment` `Incident Response`
+
+**Repo:** [github.com/harryc295/threat-intel-aggregator](https://github.com/harryc295/threat-intel-aggregator)
 
 ---
 
