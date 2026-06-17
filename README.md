@@ -48,7 +48,8 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | 🟡 **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
 | 🛡️ **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
 | 🏦 **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
-| 📦 **13 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| 🔨 **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
+| 📦 **14 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -193,13 +194,15 @@ Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. E
 ### 011 — BinaryHammer — PE Malware Analysis Tool
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Type](https://img.shields.io/badge/type-malware%20analysis-darkred?style=flat-square)
 
-Open-source C++ tool for static malware analysis — loads a PE binary and immediately surfaces disassembly, pseudo-code, imports/exports, sections, hex view, and strings. Built to remove manual overhead so analysis time is spent on decisions, not mechanics.
+Open-source C++ tool for static PE malware analysis — loads any Windows executable and surfaces disassembly, pseudo-code, imports/exports, hex view, strings, and a scored threat summary. Built to cut manual overhead so analysis time goes on decisions, not mechanics.
 
-- x86/x64 disassembly via Zydis with in-process pseudo-code lifter (no external decompiler)
-- Entropy-coloured sections table, ~130 Win32 API tooltips with malware relevance context
-- ImGui docking UI, lazy-rendered hex view, built-in console with `.info` / `.goto` / `.strings`
+- x86/x64 disassembly via Zydis with annotated call targets and ~130 Win32 API tooltips
+- Entropy-coloured sections table, W+X detection, packer signatures, IOC string scanning, scored threat overview
+- Pseudo-C code lifter, call graph, YARA rule scanning, byte-pattern search, navigation history
+- ImGui docking UI with 3-page onboarding wizard, custom app icon, and maximised-on-launch window
+- JSON report export, per-function rename/bookmark/xref, layout versioning
 
-`C++20` `CMake` `vcpkg` `ImGui` `Zydis` `Reverse Engineering` `Static Analysis`
+`C++20` `CMake` `vcpkg` `ImGui` `Zydis` `YARA` `Reverse Engineering` `Static Analysis`
 
 **Repo:** [github.com/harryc295/Binary-slammer](https://github.com/harryc295/Binary-slammer)
 
@@ -231,6 +234,21 @@ Four-tool CLI security toolkit built across a five-week assessed penetration tes
 `Python` `argparse` `Sockets` `Paramiko` `Requests` `Offensive Security`
 
 **Repo:** [github.com/harryc295/COM5413_Security_Portfolio](https://github.com/harryc295/COM5413_Security_Portfolio)
+
+---
+
+### 014 — Enterprise Complaints Management System *(Private — Commercial)*
+![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private%20%2F%20commercial-lightgrey?style=flat-square)
+
+End-to-end complaints management platform built for a regulated financial services client. Handles full case lifecycle — intake, triage, investigation, resolution, and audit — with strict access controls and compliance requirements baked into the architecture.
+
+- Multi-role workflow engine with configurable escalation paths and SLA tracking
+- Immutable audit log with cryptographic evidence integrity
+- Secure document handling and case history across all resolution stages
+
+`TypeScript` `NestJS` `Next.js` `PostgreSQL` `Docker`
+
+*(Repository private — commercial project)*
 
 ---
 
@@ -415,6 +433,6 @@ University of Greater Manchester · 2024–2025
 
 Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
 
-Currently working on: finishing the degree (first-class), publishing Untangle and extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Currently working on: finishing the degree (first-class), pushing BinaryHammer toward a public release, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
 
 Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
