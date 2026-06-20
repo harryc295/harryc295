@@ -42,14 +42,15 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 | | |
 |---|---|
-| 🔴 **CVE-2025-49132** | Critical unauthenticated RCE in Pterodactyl Panel — CVSS 9.8 — discovered and responsibly disclosed |
-| 🔍 **269** | Previously undocumented API endpoints enumerated in a single authorised engagement |
-| ☁️ **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana — deployed on Minikube + K3s edge |
-| 🟡 **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
-| 🛡️ **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
-| 🏦 **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
-| 🔨 **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| 📦 **14 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **CVE-2025-49132** | Critical unauthenticated RCE in Pterodactyl Panel — CVSS 9.8 — discovered and responsibly disclosed |
+| **269** | Previously undocumented API endpoints enumerated in a single authorised engagement |
+| **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana — deployed on Minikube + K3s edge |
+| **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
+| **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
+| **IAM Attack-Path Mapper** | Graphs AWS IAM privilege-escalation paths — ~12 known techniques, interactive attack graph, CIS/NIST-mapped findings |
+| **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
+| **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
+| **15 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -252,6 +253,23 @@ End-to-end complaints management platform built for a regulated financial servic
 
 ---
 
+### 015 — IAM Privilege-Escalation Mapper
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-IAM-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Graph](https://img.shields.io/badge/NetworkX-Graph%20Analysis-3776AB?style=flat-square)
+
+Finds AWS IAM privilege-escalation paths — permission chains that let a low-privileged principal reach `AdministratorAccess` in a few hops. Builds the IAM identity graph from a real account, walks it for known escalation techniques, and renders an interactive attack-path diagram with findings mapped to CIS/NIST controls.
+
+- Detects ~12 known AWS privesc techniques (Rhino Security Labs research): self-privesc IAM actions, `PassRole` + Lambda/EC2, multi-hop `AssumeRole` chains, credential takeover
+- networkx graph traversal for the multi-hop AssumeRole-chain detection — the one check that needs more than a single policy read
+- Self-contained interactive HTML report (pyvis) — no web framework, no database, no hosting required
+- Every finding mapped to CIS AWS Foundations / NIST CSF controls
+- Offline demo fixture and pytest suite, runs with zero AWS setup
+
+`Python` `boto3` `networkx` `pyvis` `IAM` `AWS` `Privilege Escalation` `CIS Benchmark` `Cloud Security`
+
+**Repo:** [github.com/harryc295/iam-privesc-mapper](https://github.com/harryc295/iam-privesc-mapper)
+
+---
+
 ## Lab Environment
 
 Personal cyber range running on VirtualBox — used daily for AD deployment, malware analysis, purple team exercises, and validating attack chains against real defensive controls.
@@ -433,6 +451,6 @@ University of Greater Manchester · 2024–2025
 
 Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
 
-Currently working on: finishing the degree (first-class), continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Currently working on: finishing the degree (first-class), extending iam-privesc-mapper with CloudTrail detection rules and an incident-response runbook, continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
 
 Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
