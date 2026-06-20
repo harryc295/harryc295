@@ -49,9 +49,10 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
 | **IAM Attack-Path Mapper** | Graphs AWS IAM privilege-escalation paths — ~12 known techniques, interactive attack graph, CIS/NIST-mapped findings |
 | **CloudTrail Privesc Detector** | Watches live CloudTrail activity for the same techniques actually being used, plus credential-theft correlation — pairs with the IAM mapper above |
+| **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **16 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **17 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, AI agent security, and malware analysis |
 
 ---
 
@@ -288,6 +289,23 @@ Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation
 
 ---
 
+### 017 — Agent Privilege Mapper
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
+
+Third tool in the privesc series, applied to AI agents instead of AWS IAM: a static capability mapper that tags Claude/MCP tool configs and flags dangerous combinations, paired with a prompt-injection test harness that drives a real Claude tool-use conversation against adversarial payloads.
+
+- Tags tools/MCP servers with capability flags (reads private data, exposed to untrusted content, can exfiltrate, can execute, persistent write) from real Claude tool-config shapes
+- Detects the "lethal trifecta" (private data + untrusted content + exfil channel) — the most-cited real risk pattern in agentic AI security
+- Prompt-injection harness: real two-turn Claude tool-use loop against three adversarial payload styles, with a pure, unit-testable verdict classifier
+- Findings mapped to the OWASP Top 10 for LLM Applications
+- Zero-setup offline demo for both tools; injection harness also runs live against the real Claude API with your own key
+
+`Python` `Claude API` `MCP` `Prompt Injection` `AI Agent Security` `OWASP LLM Top 10`
+
+**Repo:** [github.com/harryc295/agent-privilege-mapper](https://github.com/harryc295/agent-privilege-mapper)
+
+---
+
 ## Lab Environment
 
 Personal cyber range running on VirtualBox — used daily for AD deployment, malware analysis, purple team exercises, and validating attack chains against real defensive controls.
@@ -469,6 +487,6 @@ University of Greater Manchester · 2024–2025
 
 Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
 
-Currently working on: finishing the degree (first-class), continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Currently working on: finishing the degree (first-class), running the agent-privilege-mapper injection harness live against the real Claude API, continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
 
 Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
