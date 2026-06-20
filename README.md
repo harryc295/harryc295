@@ -48,9 +48,10 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
 | **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
 | **IAM Attack-Path Mapper** | Graphs AWS IAM privilege-escalation paths — ~12 known techniques, interactive attack graph, CIS/NIST-mapped findings |
+| **CloudTrail Privesc Detector** | Watches live CloudTrail activity for the same techniques actually being used, plus credential-theft correlation — pairs with the IAM mapper above |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **15 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **16 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -270,6 +271,23 @@ Finds AWS IAM privilege-escalation paths — permission chains that let a low-pr
 
 ---
 
+### 016 — CloudTrail Privilege-Escalation Detector
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CloudTrail-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
+
+Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation paths that *could* be used, this watches real CloudTrail activity for the same techniques actually *being* used, plus a time-windowed correlation that only shows up once you're looking at an event timeline.
+
+- 9 single-event detectors for dangerous IAM actions actually observed (Attach/Put policy, CreatePolicyVersion, UpdateAssumeRolePolicy, credential takeover)
+- Role-passing and AssumeRole detectors that resolve to confirmed severity when cross-referenced against the IAM mapper's admin-equivalent findings
+- One genuine multi-event correlation: an access key issued for someone, then used within minutes — classic credential-issuance-and-immediate-use
+- Incident-response runbook per finding family: containment, investigation, notification, prevention
+- Zero infrastructure to deploy — reads the account's existing 90-day CloudTrail history via `lookup_events`, no S3 export or Athena needed
+
+`Python` `boto3` `CloudTrail` `IAM` `Incident Response` `Detection Engineering`
+
+**Repo:** [github.com/harryc295/cloudtrail-privesc-detector](https://github.com/harryc295/cloudtrail-privesc-detector)
+
+---
+
 ## Lab Environment
 
 Personal cyber range running on VirtualBox — used daily for AD deployment, malware analysis, purple team exercises, and validating attack chains against real defensive controls.
@@ -451,6 +469,6 @@ University of Greater Manchester · 2024–2025
 
 Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
 
-Currently working on: finishing the degree (first-class), extending iam-privesc-mapper with CloudTrail detection rules and an incident-response runbook, continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Currently working on: finishing the degree (first-class), continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
 
 Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
