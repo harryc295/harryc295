@@ -52,7 +52,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **17 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, AI agent security, and malware analysis |
+| **19 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, AI agent security, and malware analysis |
 
 ---
 
@@ -306,6 +306,41 @@ Third tool in the privesc series, applied to AI agents instead of AWS IAM: a sta
 
 ---
 
+### 018 — LLM Red-Team CLI
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
+
+Scriptable adversarial test harness for LLM system prompts — fires prompt-injection, jailbreak, and system-prompt-leak attacks at a model and scores how many got through, against Claude or any OpenAI-compatible endpoint.
+
+- Canary-token technique to detect exfiltration with no guesswork about what counts as "leaked"
+- 5 attack categories: direct injection, roleplay jailbreak, system-prompt leak, indirect injection (smuggled in summarised content), base64 encoding obfuscation
+- CI-gateable — `--fail-above` exits non-zero if the risk score regresses on a system prompt change
+- Markdown report with pass/fail table, 0–100 risk score, and full prompt/response pairs
+- Works against Claude (official SDK) or OpenAI-compatible endpoints, including local Ollama/vLLM
+
+`Python` `Claude API` `OpenAI SDK` `Prompt Injection` `Red Team` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/llm-redteam](https://github.com/harryc295/llm-redteam)
+
+---
+
+### 019 — websec-assess — Web Application Security Assessment Platform
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square)
+
+Modular CLI platform for authorised web application security assessments — reconnaissance, content discovery, vulnerability checks, and opt-in injection-indicator scanning, built on a plugin architecture with an async scan engine.
+
+- Hard authorisation gate: every scan needs `--i-have-authorization` plus an explicit `allowed_hosts`/CIDR allowlist enforced on every HTTP request, DNS query, and raw-socket probe
+- Recon, content discovery, vuln assessment, API/cloud checks across a documented plugin architecture; auto-integrates nuclei, katana, httpx, subfinder, dnsx, naabu, gau and waybackurls when installed
+- Injection-indicator plugins (XSS, SQLi, SSTI, XXE, path traversal...) are detection/evidence-only and off by default
+- JSON/Markdown/HTML reporting with CWE and OWASP mapping per finding
+- Per-host rate limiting, `--dry-run` planning mode, append-only audit log
+- CI across Ubuntu/Windows/macOS plus a Docker build; ruff + mypy + pytest
+
+`Python` `Async` `Plugin Architecture` `SQLite/PostgreSQL` `nuclei` `OWASP` `Offensive Security`
+
+**Repo:** [github.com/harryc295/websec-assess](https://github.com/harryc295/websec-assess)
+
+---
+
 ## Lab Environment
 
 Personal cyber range running on VirtualBox — used daily for AD deployment, malware analysis, purple team exercises, and validating attack chains against real defensive controls.
@@ -487,6 +522,6 @@ University of Greater Manchester · 2024–2025
 
 Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
 
-Currently working on: finishing the degree (first-class), running the agent-privilege-mapper injection harness live against the real Claude API, continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Currently working on: finishing the degree (first-class), continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
 
 Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
