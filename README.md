@@ -53,7 +53,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **24 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **25 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -166,7 +166,22 @@ Tests whether an agent given a YAML-defined policy (allowed tools, filesystem sa
 
 ---
 
-### 008 — Untangle — Productivity App
+### 008 — multi-turn-bench — Multi-Turn Adversarial Attack Benchmark
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Follow--up-tool--poisoning--bench-D97757?style=flat-square)
+
+Follow-up to tool-poisoning-bench: keeps the exact same target behaviour, toolset, and allowed domain, and tests whether it succeeds over a 7-9 turn conversation instead of a single poisoned message. Five strategies (gradual escalation, persona erosion, context window poisoning, authority accumulation, memory anchoring), no single turn in any of them containing an explicit override phrase.
+
+- Comparison table against tool-poisoning-bench's published single-turn results, cited as a static reference rather than a live cross-repo dependency
+- README documents pointing `--provider openai` at Ollama's OpenAI-compatible endpoint with the same model, to hold the model constant and isolate single-turn vs multi-turn as the only variable
+- Full pytest suite (23 tests, including a regression test for a real division-by-zero bug caught during development), typed Python, GitHub Actions CI
+
+`Python` `Claude API` `OpenAI SDK` `Multi-Turn Attacks` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/multi-turn-bench](https://github.com/harryc295/multi-turn-bench)
+
+---
+
+### 009 — Untangle — Productivity App
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 "Analyse to action" — a clarity method productivity app built in TypeScript. Designed to help turn messy thinking into structured action.
@@ -177,7 +192,7 @@ Tests whether an agent given a YAML-defined policy (allowed tools, filesystem sa
 
 ---
 
-### 009 — Automated AWS CIS Compliance Remediation Engine
+### 010 — Automated AWS CIS Compliance Remediation Engine
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CIS%20Benchmark-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![IaC](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 
 Serverless auto-remediation engine that detects and fixes four high-priority CIS Benchmark findings every 6 hours — fully deployed on the AWS free tier via a single `terraform apply`.
@@ -195,7 +210,7 @@ Serverless auto-remediation engine that detects and fixes four high-priority CIS
 
 ---
 
-### 010 — AWS EC2 Price Tracker — Live API Pipeline
+### 011 — AWS EC2 Price Tracker — Live API Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-boto3-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub%20Actions-daily%20cron-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 
 Two-phase FinOps automation project — started with a static proof of concept, evolved into a fully live AWS API integration.
@@ -209,7 +224,7 @@ Two-phase FinOps automation project — started with a static proof of concept, 
 
 ---
 
-### 011 — Cloud Native Platform *(University)*
+### 012 — Cloud Native Platform *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-cloud%20engineering-blueviolet?style=flat-square) ![K8s](https://img.shields.io/badge/Kubernetes-Minikube%20%2B%20K3s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 
 Three-tier application deployed on Kubernetes with full observability, serverless compute, edge simulation, and zero-trust RBAC architecture.
@@ -224,7 +239,7 @@ Three-tier application deployed on Kubernetes with full observability, serverles
 
 ---
 
-### 012 — Enterprise Active Directory Lab *(University)*
+### 013 — Enterprise Active Directory Lab *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white) ![AD](https://img.shields.io/badge/Active%20Directory-Two--Domain%20Forest-0078D4?style=flat-square&logo=windows&logoColor=white)
 
 Two-domain Active Directory forest simulating an enterprise network with RBAC, cross-platform authentication, automated deployment, and validated security controls.
@@ -240,7 +255,7 @@ Two-domain Active Directory forest simulating an enterprise network with RBAC, c
 
 ---
 
-### 013 — DevSecOps n8n Workflow Platform
+### 014 — DevSecOps n8n Workflow Platform
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square) ![AI](https://img.shields.io/badge/Local%20LLM-Llama%203.2-ff6b35?style=flat-square)
 
 Self-hosted automation platform combining n8n with a local Llama 3.2 model via Ollama. Runs a daily security news digest pipeline — RSS to formatted HTML to Gmail — entirely locally. Also wires DevSecOps pipeline hooks and vulnerability triage workflows.
@@ -251,7 +266,7 @@ Self-hosted automation platform combining n8n with a local Llama 3.2 model via O
 
 ---
 
-### 014 — Nessus Vulnerability Pipeline
+### 015 — Nessus Vulnerability Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square)
 
 Python CLI wrapping the Nessus REST API — automates scan launches, parses results, extracts critical findings, sends Slack webhook alerts, and generates CSV compliance reports.
@@ -262,7 +277,7 @@ Python CLI wrapping the Nessus REST API — automates scan launches, parses resu
 
 ---
 
-### 015 — OSINT Threat Intelligence Dashboard
+### 016 — OSINT Threat Intelligence Dashboard
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-threat%20intelligence-8B0000?style=flat-square)
 
 Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. Enriches IOCs — IPs, domains, file hashes — with reputation scores, geolocation, and WHOIS data. Outputs structured JSON and a live HTML dashboard for incident response triage.
@@ -273,7 +288,7 @@ Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. E
 
 ---
 
-### 016 — BinaryHammer — PE Malware Analysis Tool
+### 017 — BinaryHammer — PE Malware Analysis Tool
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Type](https://img.shields.io/badge/type-malware%20analysis-darkred?style=flat-square)
 
 Open-source C++ tool for static PE malware analysis — loads any Windows executable and surfaces disassembly, pseudo-code, imports/exports, hex view, strings, and a scored threat summary. Built to cut manual overhead so analysis time goes on decisions, not mechanics.
@@ -290,7 +305,7 @@ Open-source C++ tool for static PE malware analysis — loads any Windows execut
 
 ---
 
-### 017 — ColdVault — Offline Password Manager
+### 018 — ColdVault — Offline Password Manager
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Crypto](https://img.shields.io/badge/AES--256--GCM-Zero%20Knowledge-green?style=flat-square) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-screen UI, multi-vault support, auto-lock, PrintScreen blocking, secure clipboard clearing, password generation, and organised login/card/note management.
@@ -301,7 +316,7 @@ Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-s
 
 ---
 
-### 018 — Benji Protocol — Offensive Security Toolkit *(University)*
+### 019 — Benji Protocol — Offensive Security Toolkit *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-pentest%20toolkit-red?style=flat-square)
 
 Four-tool CLI security toolkit built across a five-week assessed penetration testing module. Fully headless and automatable via argparse.
@@ -319,7 +334,7 @@ Four-tool CLI security toolkit built across a five-week assessed penetration tes
 
 ---
 
-### 019 — Enterprise Complaints Management System *(Private — Commercial)*
+### 020 — Enterprise Complaints Management System *(Private — Commercial)*
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private%20%2F%20commercial-lightgrey?style=flat-square)
 
 End-to-end complaints management platform built for a regulated financial services client. Handles full case lifecycle — intake, triage, investigation, resolution, and audit — with strict access controls and compliance requirements baked into the architecture.
@@ -334,7 +349,7 @@ End-to-end complaints management platform built for a regulated financial servic
 
 ---
 
-### 020 — IAM Privilege-Escalation Mapper
+### 021 — IAM Privilege-Escalation Mapper
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-IAM-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Graph](https://img.shields.io/badge/NetworkX-Graph%20Analysis-3776AB?style=flat-square)
 
 Finds AWS IAM privilege-escalation paths — permission chains that let a low-privileged principal reach `AdministratorAccess` in a few hops. Builds the IAM identity graph from a real account, walks it for known escalation techniques, and renders an interactive attack-path diagram with findings mapped to CIS/NIST controls.
@@ -351,7 +366,7 @@ Finds AWS IAM privilege-escalation paths — permission chains that let a low-pr
 
 ---
 
-### 021 — CloudTrail Privilege-Escalation Detector
+### 022 — CloudTrail Privilege-Escalation Detector
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CloudTrail-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
 
 Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation paths that *could* be used, this watches real CloudTrail activity for the same techniques actually *being* used, plus a time-windowed correlation that only shows up once you're looking at an event timeline.
@@ -368,7 +383,7 @@ Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation
 
 ---
 
-### 022 — Agent Privilege Mapper
+### 023 — Agent Privilege Mapper
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
 
 Third tool in the privesc series, applied to AI agents instead of AWS IAM: a static capability mapper that tags Claude/MCP tool configs and flags dangerous combinations, paired with a prompt-injection test harness that drives a real Claude tool-use conversation against adversarial payloads.
@@ -385,7 +400,7 @@ Third tool in the privesc series, applied to AI agents instead of AWS IAM: a sta
 
 ---
 
-### 023 — LLM Red-Team CLI
+### 024 — LLM Red-Team CLI
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
 
 Scriptable adversarial test harness for LLM system prompts — fires prompt-injection, jailbreak, and system-prompt-leak attacks at a model and scores how many got through, against Claude or any OpenAI-compatible endpoint.
@@ -402,7 +417,7 @@ Scriptable adversarial test harness for LLM system prompts — fires prompt-inje
 
 ---
 
-### 024 — websec-assess — Web Application Security Assessment Platform
+### 025 — websec-assess — Web Application Security Assessment Platform
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square)
 
 Modular CLI platform for authorised web application security assessments — reconnaissance, content discovery, vulnerability checks, and opt-in injection-indicator scanning, built on a plugin architecture with an async scan engine.
