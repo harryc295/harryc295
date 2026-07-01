@@ -55,7 +55,8 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail. Unifies the four MCP/agent point tools below into continuous fleet-wide posture management |
-| **28 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **agent-airlock** | Runtime security hook for AI coding agents (Claude Code) — tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
+| **29 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -487,6 +488,24 @@ The governance layer the MCP/agent point tools above (003, 004, 005, 024) all st
 `Python` `FastAPI` `SQLite` `MCP` `Policy as Code` `AI Agent Security` `Governance`
 
 **Repo:** [github.com/harryc295/fleetwatch](https://github.com/harryc295/fleetwatch)
+
+---
+
+### 029 — agent-airlock — Runtime Lethal-Trifecta Guardrail for AI Coding Agents
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20Code-PreToolUse%20Hook-D97757?style=flat-square)
+
+A security control that runs inside the real product. Installs as a Claude Code `PreToolUse` hook and decides on every tool call, live, using session history — where agent-privilege-mapper (024) finds the lethal trifecta in a *config* and agent-jail (007) tests containment *offline*, this catches the trifecta *forming during an actual session* and blocks the exfiltration at the moment it is attempted.
+
+- Per-session taint state machine: tracks when a session has read private data (secrets, credentials, SSH keys), ingested untrusted content (repo files, fetched pages), and then attempts egress to an unapproved host — the three legs of Simon Willison's lethal trifecta — and denies only when all three coincide
+- Solves the problem stateless per-call filters can't: a delayed-exfil `curl` that looks routine on its own is blocked because the session state still carries the earlier secret read and repo ingestion (hooks are separate processes, so state is persisted by `session_id`)
+- Unconditional hard blocks for `curl | bash`, reverse shells, boot/login persistence writes, and secret literals (AWS keys, GitHub tokens, private-key blocks) in outbound requests
+- Red-team demo runs a poisoned repo through the real hook process end to end: the injected `curl -d @.env` exfil is blocked, the same task done honestly runs clean
+- Empirical evaluation over a 24-session labeled corpus — **100% detection, 0% false positives** — with a hard benign set (sessions that read a secret *and* untrusted content but never exfiltrate) to prove it isn't a naive two-of-three heuristic
+- Standard library only, pure-function test suite, GitHub Actions CI running tests + eval + demo; built against the verified Claude Code hook contract (fail-open by default so a guardrail bug never bricks a session)
+
+`Python` `Claude Code Hooks` `Prompt Injection` `Taint Tracking` `Lethal Trifecta` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/agent-airlock](https://github.com/harryc295/agent-airlock)
 
 ---
 
