@@ -54,7 +54,8 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **27 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail. Unifies the four MCP/agent point tools below into continuous fleet-wide posture management |
+| **28 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -468,6 +469,24 @@ Companion to the IAM Privilege-Escalation Mapper (022): builds the same IAM esca
 `Python` `boto3` `networkx` `Claude API` `AWS IAM` `CloudTrail` `Deception Technology` `Cloud Security`
 
 **Repo:** [github.com/harryc295/decoygraph](https://github.com/harryc295/decoygraph)
+
+---
+
+### 028 — fleetwatch — AI Agent & MCP Security Posture Management
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/MCP-Fleet%20Governance-D97757?style=flat-square)
+
+The governance layer the MCP/agent point tools above (003, 004, 005, 024) all stop short of: a registry of every agent, MCP server, and tool grant in an org, with continuous verification that approved servers still serve the tool schemas they were approved with. Point-in-time scanners audit once and runtime proxies see one session; this watches the whole fleet after approval — the exact window tool-poisoning-bench proved gets exploited.
+
+- Drift detector re-fetches every approved server's tool schemas and diffs against the approval-time baseline — any change is flagged as a rug-pull candidate with a before/after diff, never auto-blocked
+- Policy-as-code in version-controlled JSON: server allow/deny lists, denied tools, and lethal-trifecta detection evaluated across an agent's full grant set spanning multiple servers, not per-config
+- Scored tool-call event ingestion (the kind mcp-sentinel emits) with policy-set alert thresholds
+- Structured audit log of every registration, approval, drift detection, and alert — CSV/JSON export for SOC 2 / ISO 27001 evidence
+- FastAPI + SQLite with a server-rendered dashboard, three pip dependencies, no Docker; runnable end-to-end rug-pull demo (`python demo/run_demo.py`) that registers, approves, silently mutates a tool schema, and catches it
+- Pure-function test suite over the drift-diff and policy-evaluation logic — no DB or network needed to run it
+
+`Python` `FastAPI` `SQLite` `MCP` `Policy as Code` `AI Agent Security` `Governance`
+
+**Repo:** [github.com/harryc295/fleetwatch](https://github.com/harryc295/fleetwatch)
 
 ---
 
