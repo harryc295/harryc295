@@ -50,10 +50,11 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
 | **IAM Attack-Path Mapper** | Graphs AWS IAM privilege-escalation paths — ~12 known techniques, interactive attack graph, CIS/NIST-mapped findings |
 | **CloudTrail Privesc Detector** | Watches live CloudTrail activity for the same techniques actually being used, plus credential-theft correlation — pairs with the IAM mapper above |
+| **decoygraph** | Places decoy AWS resources directly on the IAM escalation paths an attacker is most likely to walk, then re-ranks and redeploys live via CloudTrail when one gets touched |
 | **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **26 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **27 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -450,6 +451,23 @@ Modular CLI platform for authorised web application security assessments — rec
 `Python` `Async` `Plugin Architecture` `SQLite/PostgreSQL` `nuclei` `OWASP` `Offensive Security`
 
 **Repo:** [github.com/harryc295/websec-assess](https://github.com/harryc295/websec-assess)
+
+---
+
+### 027 — decoygraph — Graph-Informed Adaptive AWS IAM Deception
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-IAM-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
+
+Companion to the IAM Privilege-Escalation Mapper (022): builds the same IAM escalation graph, but instead of just reporting the paths, it deploys decoy AWS resources directly onto the ones an attacker is most likely to walk, then re-ranks and redeploys live when one gets touched. Static attack-graph tools stop at reporting; static deception tools guess where to place decoys. This uses the graph to decide.
+
+- boto3 + networkx IAM graph, detecting 6 known privesc primitives (PassRole+Lambda/EC2, CreateAccessKey, self-privesc policy edits, multi-hop AssumeRole chains)
+- Claude tool-calling agent ranks paths by attacker plausibility and generates decoy specs — name, type, lure content — for the top-ranked ones
+- Deploys IAM role / S3 bucket / Secrets Manager decoys via boto3, name-prefixed and tagged so the responder Lambda's IAM policy stays scoped instead of needing `Resource: "*"`
+- CloudTrail → EventBridge → Lambda loop: confirms a touched resource is a real decoy before acting, logs it, re-ranks, deploys the next decoy, alerts via SNS
+- Terraform manages only the static control plane; decoys are deployed and torn down by the agent at runtime, never hand-authored infrastructure
+
+`Python` `boto3` `networkx` `Claude API` `AWS IAM` `CloudTrail` `Deception Technology` `Cloud Security`
+
+**Repo:** [github.com/harryc295/decoygraph](https://github.com/harryc295/decoygraph)
 
 ---
 
