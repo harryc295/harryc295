@@ -42,8 +42,9 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 | | |
 |---|---|
-| **CVE-2025-49132** | Critical unauthenticated RCE in Pterodactyl Panel — CVSS 9.8 — discovered and responsibly disclosed |
+| **CVE-2025-49132** | Discovered an undocumented client asset during a private pentest's subdomain enumeration and confirmed it vulnerable to this critical unauthenticated Pterodactyl Panel RCE (CVSS 9.8), verified with public exploit tooling |
 | **269** | Previously undocumented API endpoints enumerated in a single authorised engagement |
+| **mcp-sentinel** | Live runtime proxy that scores MCP tools at connect time and blocks path traversal, SSRF, shell injection, and credential exfil in individual tool calls, in real time |
 | **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana — deployed on Minikube + K3s edge |
 | **AWS FinOps Pipeline** | Live boto3 integration with AWS Pricing API — daily cron via GitHub Actions, credentials via Secrets |
 | **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours — Terraform-deployed |
@@ -52,7 +53,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **Agent Privilege Mapper** | Finds dangerous AI agent tool-capability combinations (the "lethal trifecta") in Claude/MCP configs, tests prompt-injection resistance against the real Claude API, maps findings to OWASP LLM Top 10 |
 | **FCA DISP Platform** | Production internship at Ideal4Finance — NestJS 11 + Next.js 16 regulated complaints platform |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **19 Projects** | Across offensive security, cloud, full-stack, infrastructure automation, AI agent security, and malware analysis |
+| **24 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -61,9 +62,9 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 ### 001 — Full-Scope Penetration Test *(Authorised Engagement)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square) ![CVE](https://img.shields.io/badge/CVE--2025--49132-CVSS%209.8-critical?style=flat-square)
 
-Black-box engagement covering a web application, subdomains, and four cloud-hosted targets. Discovered and responsibly disclosed a critical unauthenticated RCE vulnerability now recorded as a CVE.
+Black-box engagement covering a web application, subdomains, and four cloud-hosted targets. Found an undocumented host during subdomain enumeration and confirmed it exposed a critical unauthenticated RCE.
 
-- Identified **CVE-2025-49132** — unauthenticated RCE in Pterodactyl Panel, CVSS 9.8, now patched
+- Discovered an in-scope client asset not in the original target list and confirmed it vulnerable to **CVE-2025-49132** — unauthenticated RCE in Pterodactyl Panel, CVSS 9.8 — using public exploit tooling
 - Enumerated **269 undocumented API endpoints** on port 8080 using ffuf
 - Full OAuth2 security review: redirect_uri bypass, missing state parameter, absent PKCE
 - Delivered 18-page executive and technical report with full remediation roadmap
@@ -87,7 +88,85 @@ Core developer on an FCA-regulated financial complaints management platform buil
 
 ---
 
-### 003 — Untangle — Productivity App
+### 003 — mcp-sentinel — Live MCP Security Proxy
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/MCP-Runtime%20Proxy-D97757?style=flat-square)
+
+Live runtime proxy that sits between an MCP client and a real tool server: scores every tool at connect time and inspects individual `tools/call` payloads in real time, blocking path traversal, SSRF, shell injection, and credential exfiltration before they reach the downstream server. The flagship of three MCP/agent-security tools below.
+
+- Built on the official Anthropic `mcp` Python SDK, not a reimplementation of the protocol
+- Word-boundary regex rules (not naive substring matching) after a real false positive was caught and fixed during testing against the reference MCP server
+- Nested dict/list argument scanning, not just top-level values
+- Real in-memory protocol integration tests (18/18 passing) plus unit tests
+- GitHub Actions CI, recordable demo showing 4 live attacks blocked and 1 normal call allowed
+
+`Python` `Anthropic MCP SDK` `Tool Poisoning` `SSRF` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/mcp-sentinel](https://github.com/harryc295/mcp-sentinel)
+
+---
+
+### 004 — mcp-security-scanner — Static MCP Auditor
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/MCP-Static%20Audit-D97757?style=flat-square)
+
+Static heuristic auditor for MCP server definitions: flags tool-poisoning and prompt-injection phrases, the agent "lethal trifecta" (read + write + exec), tool-name shadowing, unpinned-package supply chain risk, and plaintext secrets, all before a server is ever connected to.
+
+- Zero dependencies, stdlib only
+- Word-boundary regex matching, sharing the same false-positive fix validated in mcp-sentinel
+
+`Python` `MCP` `Static Analysis` `Supply Chain Security` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/mcp-security-scanner](https://github.com/harryc295/mcp-security-scanner)
+
+---
+
+### 005 — tool-poisoning-bench — Empirical Tool-Poisoning Benchmark
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/LLM-Benchmark-D97757?style=flat-square)
+
+Measures how often tool-using LLMs execute instructions hidden in a tool's *description* versus hidden in a tool's *output*, with a heuristic guard on and off. Eight hand-written scenarios (explicit / social-engineering / obfuscated variants), three trials each, tested against a real local model via Ollama.
+
+- Real measured result, not a cherry-picked one: explicit override in a tool description succeeded 3/3 with the guard off and 0/3 with it on; social-engineering, obfuscated, and all tool-output-injection variants failed regardless of guard state
+- Zero pip dependencies (stdlib `urllib` for the Ollama call)
+- Full written report with methodology and limitations in `results/`
+
+`Python` `Ollama` `Prompt Injection` `LLM Benchmark` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/tool-poisoning-bench](https://github.com/harryc295/tool-poisoning-bench)
+
+---
+
+### 006 — rag-poison-bench — RAG Indirect Prompt Injection Benchmark
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/MITRE%20ATLAS-Mapped-D97757?style=flat-square)
+
+Benchmarks RAG systems against indirect prompt injection via poisoned retrieval documents. Five scenario categories (instruction override, persona hijack, data exfiltration, tool-call manipulation, goal redirection), each with explicit / obfuscated / split-across-chunks payload variants, against Claude or an OpenAI-compatible model.
+
+- Every scenario mapped to a MITRE ATLAS technique (AML.T0051/.001, AML.T0053, AML.T0054, AML.T0057)
+- Structural, deterministic judging (oracle-string or tool-call domain checks), not an LLM judge
+- Guard mode re-runs every scenario with a system-level instruction and reports the delta in success rate, including where the guard doesn't help
+- Zero dependencies beyond the Anthropic and OpenAI SDKs, full pytest suite, typed Python, GitHub Actions CI
+
+`Python` `Claude API` `OpenAI SDK` `MITRE ATLAS` `RAG Security` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/rag-poison-bench](https://github.com/harryc295/rag-poison-bench)
+
+---
+
+### 007 — agent-jail — AI Agent Containment Testing Framework
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/AISI-Aligned%20Threat%20Model-D97757?style=flat-square)
+
+Tests whether an agent given a YAML-defined policy (allowed tools, filesystem sandbox, HTTP allowlist, subprocess flag) can be manipulated into exceeding it. Drives a real multi-turn tool-call loop against a fully simulated filesystem/HTTP/subprocess environment across five attack categories (direct override, social engineering via tool output, multi-turn escalation, authority spoofing, indirect injection via retrieved content).
+
+- Three-way verdict per scenario (compliant / boundary-probing / containment-escaped) with a confidence score, plus an aggregate containment score
+- Threat model and methodology reference AISI's published AgentHarm benchmark and control research agenda
+- Nothing in the tool environment ever touches a real disk, network, or shell
+- Full pytest suite, typed Python, GitHub Actions CI
+
+`Python` `YAML` `Claude API` `OpenAI SDK` `Agent Containment` `AI Agent Security`
+
+**Repo:** [github.com/harryc295/agent-jail](https://github.com/harryc295/agent-jail)
+
+---
+
+### 008 — Untangle — Productivity App
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 "Analyse to action" — a clarity method productivity app built in TypeScript. Designed to help turn messy thinking into structured action.
@@ -98,7 +177,7 @@ Core developer on an FCA-regulated financial complaints management platform buil
 
 ---
 
-### 004 — Automated AWS CIS Compliance Remediation Engine
+### 009 — Automated AWS CIS Compliance Remediation Engine
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CIS%20Benchmark-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![IaC](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 
 Serverless auto-remediation engine that detects and fixes four high-priority CIS Benchmark findings every 6 hours — fully deployed on the AWS free tier via a single `terraform apply`.
@@ -116,7 +195,7 @@ Serverless auto-remediation engine that detects and fixes four high-priority CIS
 
 ---
 
-### 005 — AWS EC2 Price Tracker — Live API Pipeline
+### 010 — AWS EC2 Price Tracker — Live API Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-boto3-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Actions](https://img.shields.io/badge/GitHub%20Actions-daily%20cron-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 
 Two-phase FinOps automation project — started with a static proof of concept, evolved into a fully live AWS API integration.
@@ -130,7 +209,7 @@ Two-phase FinOps automation project — started with a static proof of concept, 
 
 ---
 
-### 006 — Cloud Native Platform *(University)*
+### 011 — Cloud Native Platform *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-cloud%20engineering-blueviolet?style=flat-square) ![K8s](https://img.shields.io/badge/Kubernetes-Minikube%20%2B%20K3s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 
 Three-tier application deployed on Kubernetes with full observability, serverless compute, edge simulation, and zero-trust RBAC architecture.
@@ -145,7 +224,7 @@ Three-tier application deployed on Kubernetes with full observability, serverles
 
 ---
 
-### 007 — Enterprise Active Directory Lab *(University)*
+### 012 — Enterprise Active Directory Lab *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white) ![AD](https://img.shields.io/badge/Active%20Directory-Two--Domain%20Forest-0078D4?style=flat-square&logo=windows&logoColor=white)
 
 Two-domain Active Directory forest simulating an enterprise network with RBAC, cross-platform authentication, automated deployment, and validated security controls.
@@ -161,7 +240,7 @@ Two-domain Active Directory forest simulating an enterprise network with RBAC, c
 
 ---
 
-### 008 — DevSecOps n8n Workflow Platform
+### 013 — DevSecOps n8n Workflow Platform
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square) ![AI](https://img.shields.io/badge/Local%20LLM-Llama%203.2-ff6b35?style=flat-square)
 
 Self-hosted automation platform combining n8n with a local Llama 3.2 model via Ollama. Runs a daily security news digest pipeline — RSS to formatted HTML to Gmail — entirely locally. Also wires DevSecOps pipeline hooks and vulnerability triage workflows.
@@ -172,7 +251,7 @@ Self-hosted automation platform combining n8n with a local Llama 3.2 model via O
 
 ---
 
-### 009 — Nessus Vulnerability Pipeline
+### 014 — Nessus Vulnerability Pipeline
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-devsecops-00b4d8?style=flat-square)
 
 Python CLI wrapping the Nessus REST API — automates scan launches, parses results, extracts critical findings, sends Slack webhook alerts, and generates CSV compliance reports.
@@ -183,7 +262,7 @@ Python CLI wrapping the Nessus REST API — automates scan launches, parses resu
 
 ---
 
-### 010 — OSINT Threat Intelligence Dashboard
+### 015 — OSINT Threat Intelligence Dashboard
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-threat%20intelligence-8B0000?style=flat-square)
 
 Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. Enriches IOCs — IPs, domains, file hashes — with reputation scores, geolocation, and WHOIS data. Outputs structured JSON and a live HTML dashboard for incident response triage.
@@ -194,7 +273,7 @@ Threat intelligence aggregator pulling from VirusTotal, Shodan, and AbuseIPDB. E
 
 ---
 
-### 011 — BinaryHammer — PE Malware Analysis Tool
+### 016 — BinaryHammer — PE Malware Analysis Tool
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Type](https://img.shields.io/badge/type-malware%20analysis-darkred?style=flat-square)
 
 Open-source C++ tool for static PE malware analysis — loads any Windows executable and surfaces disassembly, pseudo-code, imports/exports, hex view, strings, and a scored threat summary. Built to cut manual overhead so analysis time goes on decisions, not mechanics.
@@ -211,7 +290,7 @@ Open-source C++ tool for static PE malware analysis — loads any Windows execut
 
 ---
 
-### 012 — ColdVault — Offline Password Manager
+### 017 — ColdVault — Offline Password Manager
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Crypto](https://img.shields.io/badge/AES--256--GCM-Zero%20Knowledge-green?style=flat-square) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
 
 Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-screen UI, multi-vault support, auto-lock, PrintScreen blocking, secure clipboard clearing, password generation, and organised login/card/note management.
@@ -222,7 +301,7 @@ Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-s
 
 ---
 
-### 013 — Benji Protocol — Offensive Security Toolkit *(University)*
+### 018 — Benji Protocol — Offensive Security Toolkit *(University)*
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-pentest%20toolkit-red?style=flat-square)
 
 Four-tool CLI security toolkit built across a five-week assessed penetration testing module. Fully headless and automatable via argparse.
@@ -240,7 +319,7 @@ Four-tool CLI security toolkit built across a five-week assessed penetration tes
 
 ---
 
-### 014 — Enterprise Complaints Management System *(Private — Commercial)*
+### 019 — Enterprise Complaints Management System *(Private — Commercial)*
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private%20%2F%20commercial-lightgrey?style=flat-square)
 
 End-to-end complaints management platform built for a regulated financial services client. Handles full case lifecycle — intake, triage, investigation, resolution, and audit — with strict access controls and compliance requirements baked into the architecture.
@@ -255,7 +334,7 @@ End-to-end complaints management platform built for a regulated financial servic
 
 ---
 
-### 015 — IAM Privilege-Escalation Mapper
+### 020 — IAM Privilege-Escalation Mapper
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-IAM-FF9900?style=flat-square&logo=amazonaws&logoColor=white) ![Graph](https://img.shields.io/badge/NetworkX-Graph%20Analysis-3776AB?style=flat-square)
 
 Finds AWS IAM privilege-escalation paths — permission chains that let a low-privileged principal reach `AdministratorAccess` in a few hops. Builds the IAM identity graph from a real account, walks it for known escalation techniques, and renders an interactive attack-path diagram with findings mapped to CIS/NIST controls.
@@ -272,7 +351,7 @@ Finds AWS IAM privilege-escalation paths — permission chains that let a low-pr
 
 ---
 
-### 016 — CloudTrail Privilege-Escalation Detector
+### 021 — CloudTrail Privilege-Escalation Detector
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-CloudTrail-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
 
 Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation paths that *could* be used, this watches real CloudTrail activity for the same techniques actually *being* used, plus a time-windowed correlation that only shows up once you're looking at an event timeline.
@@ -289,7 +368,7 @@ Companion to the IAM Attack-Path Mapper: instead of finding privilege-escalation
 
 ---
 
-### 017 — Agent Privilege Mapper
+### 022 — Agent Privilege Mapper
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
 
 Third tool in the privesc series, applied to AI agents instead of AWS IAM: a static capability mapper that tags Claude/MCP tool configs and flags dangerous combinations, paired with a prompt-injection test harness that drives a real Claude tool-use conversation against adversarial payloads.
@@ -306,7 +385,7 @@ Third tool in the privesc series, applied to AI agents instead of AWS IAM: a sta
 
 ---
 
-### 018 — LLM Red-Team CLI
+### 023 — LLM Red-Team CLI
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Claude%20API-Agent%20Security-D97757?style=flat-square)
 
 Scriptable adversarial test harness for LLM system prompts — fires prompt-injection, jailbreak, and system-prompt-leak attacks at a model and scores how many got through, against Claude or any OpenAI-compatible endpoint.
@@ -323,7 +402,7 @@ Scriptable adversarial test harness for LLM system prompts — fires prompt-inje
 
 ---
 
-### 019 — websec-assess — Web Application Security Assessment Platform
+### 024 — websec-assess — Web Application Security Assessment Platform
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square)
 
 Modular CLI platform for authorised web application security assessments — reconnaissance, content discovery, vulnerability checks, and opt-in injection-indicator scanning, built on a plugin architecture with an async scan engine.
@@ -476,7 +555,7 @@ Personal cyber range running on VirtualBox — used daily for AD deployment, mal
 Building an FCA DISP-aligned financial complaints platform from the ground up. Core contributor responsible for architecture, security implementation, and CI pipeline. NestJS 11 + Next.js 16 + PostgreSQL + Docker.
 
 **Penetration Tester — Authorised Client Engagement** *(June 2026)*
-Full-scope black-box test across web, subdomains, and four cloud-hosted targets. Discovered CVE-2025-49132 (Critical CVSS 9.8), enumerated 269 undocumented endpoints, full OAuth2 audit. Delivered 18-page executive and technical report with remediation roadmap.
+Full-scope black-box test across web, subdomains, and four cloud-hosted targets. Discovered an undocumented client asset during recon and confirmed it vulnerable to CVE-2025-49132 (Critical CVSS 9.8) using public exploit tooling; enumerated 269 undocumented endpoints; full OAuth2 audit. Delivered 18-page executive and technical report with remediation roadmap.
 
 **Kitchen Porter / Bar Back — Lytham House** *(2021 — 2024)*
 Three years in a high-pressure hospitality environment. Teamwork, reliability, and communication under pressure.
