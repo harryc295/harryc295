@@ -56,7 +56,8 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 | **BinaryHammer** | Open-source C++ PE malware analysis tool — Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail. Unifies the four MCP/agent point tools below into continuous fleet-wide posture management |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code) — tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
-| **29 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **redforge** | Automated LLM red-teaming platform — an attacker model that discovers jailbreaks via PAIR + TAP (tree-of-attacks) search, maps findings to MITRE ATLAS, and gates CI/CD. Runs offline or against Ollama / OpenAI / Anthropic |
+| **30 Projects** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -506,6 +507,24 @@ A security control that runs inside the real product. Installs as a Claude Code 
 `Python` `Claude Code Hooks` `Prompt Injection` `Taint Tracking` `Lethal Trifecta` `AI Agent Security`
 
 **Repo:** [github.com/harryc295/agent-airlock](https://github.com/harryc295/agent-airlock)
+
+---
+
+### 030 — redforge — Automated LLM Red-Teaming Platform
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Adaptive-PAIR%20%2B%20TAP-D97757?style=flat-square) ![Framework](https://img.shields.io/badge/MITRE-ATLAS-red?style=flat-square)
+
+The offensive counterpart to the fixed-battery tools above: an attacker model that *adapts*. Where llm-redteam (025) fires a static suite and the benchmarks run fixed scenarios, redforge runs a closed attacker–judge loop that discovers jailbreaks by iterative refinement and tree search — a faithful, compact implementation of the two published state-of-the-art algorithms, built as an authorized safety-evaluation tool against benign refusal-boundary surrogates.
+
+- **PAIR** (Chao et al., arXiv:2310.08419) and **TAP** (Tree of Attacks with Pruning, Mehrotra et al., arXiv:2312.02119) behind one CLI — branch candidate refinements, prune off-topic ones with the judge before spending a target query, expand the best
+- Ground-truth success decided by an **oracle, not the LLM judge** — a gameable judge can only misrank the search, never fabricate a finding (asserted by a dedicated test)
+- Every finding mapped to **MITRE ATLAS**, scored into a risk number, and turned into a **CI/CD gate** (non-zero exit) with a drop-in GitHub Actions workflow — the automated red-team pipeline enterprises need under EU AI Act enforcement
+- Self-contained **HTML / JSON / Markdown reports** + SQLite scan history for release-over-release ASR trends
+- Model-agnostic providers: offline **mock** (deterministic, for CI), **Ollama**, any **OpenAI-compatible** endpoint, and the **Anthropic Messages API** — standard library only, zero pip dependencies
+- Committed **research writeup** with a real end-to-end run against llama3.2:3b (harness verified live; TAP pruning fires on real candidates), honest about where small-budget adaptation helps and where it doesn't — the seed for an arXiv/blog preprint
+
+`Python` `PAIR` `TAP` `Jailbreak Research` `MITRE ATLAS` `LLM Red-Teaming` `Adversarial ML` `CI/CD Security`
+
+**Repo:** [github.com/harryc295/redforge](https://github.com/harryc295/redforge)
 
 ---
 
