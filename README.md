@@ -42,7 +42,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 | | |
 |---|---|
-| **redforge** | Automated LLM red-teaming platform — an attacker model that discovers jailbreaks via PAIR + TAP (tree-of-attacks) search, maps findings to MITRE ATLAS, and gates CI/CD. Runs offline or against Ollama / OpenAI / Anthropic |
+| **branchbreak** | Automated LLM red-teaming platform — an attacker model that discovers jailbreaks via PAIR + TAP + Crescendo, maps findings to MITRE ATLAS, and gates CI/CD with query budgets, webhook alerting, and audit export. Runs offline or against Ollama / OpenAI / Anthropic |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code) — tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail |
 | **mcp-sentinel** | Live runtime proxy that scores MCP tools at connect time and blocks path traversal, SSRF, shell injection, and credential exfil in individual tool calls, in real time |
@@ -63,21 +63,22 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 ## Projects
 
-### 001 — redforge — Automated LLM Red-Teaming Platform
-![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Adaptive-PAIR%20%2B%20TAP-D97757?style=flat-square) ![Framework](https://img.shields.io/badge/MITRE-ATLAS-red?style=flat-square)
+### 001 — branchbreak — Automated LLM Red-Teaming Platform
+![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Adaptive-PAIR%20%2B%20TAP%20%2B%20Crescendo-D97757?style=flat-square) ![Framework](https://img.shields.io/badge/MITRE-ATLAS-red?style=flat-square)
 
-The offensive counterpart to the fixed-battery tools in this profile: an attacker model that *adapts*. Where llm-redteam fires a static suite and the benchmarks run fixed scenarios, redforge runs a closed attacker–judge loop that discovers jailbreaks by iterative refinement and tree search — a faithful, compact implementation of the two published state-of-the-art algorithms, built as an authorized safety-evaluation tool against benign refusal-boundary surrogates.
+The offensive counterpart to the fixed-battery tools in this profile: an attacker model that *adapts*. Where llm-redteam fires a static suite and the benchmarks run fixed scenarios, branchbreak runs a closed attacker–judge loop that discovers jailbreaks by iterative refinement, tree search, and multi-turn escalation — faithful, compact implementations of three published algorithms, built as an authorized safety-evaluation tool against benign refusal-boundary surrogates.
 
-- **PAIR** (Chao et al., arXiv:2310.08419) and **TAP** (Tree of Attacks with Pruning, Mehrotra et al., arXiv:2312.02119) behind one CLI — branch candidate refinements, prune off-topic ones with the judge before spending a target query, expand the best
+- **PAIR**, **TAP** (Tree of Attacks with Pruning), and **Crescendo** (genuinely multi-turn — the target keeps real conversation state across turns, unlike PAIR/TAP's fresh-attempt-per-iteration design) behind one CLI
+- **PyRIT-style prompt converters** (base64/ROT13/leetspeak) test whether obfuscation evades a keyword guardrail; a **JSON taxonomy loader** makes "point it at a real harm taxonomy under an authorized engagement" an actual config change instead of a documentation claim, without shipping any harmful content in the repo
 - Ground-truth success decided by an **oracle, not the LLM judge** — a gameable judge can only misrank the search, never fabricate a finding (asserted by a dedicated test)
-- Every finding mapped to **MITRE ATLAS**, scored into a risk number, and turned into a **CI/CD gate** (non-zero exit) with a drop-in GitHub Actions workflow — the automated red-team pipeline enterprises need under EU AI Act enforcement
-- Self-contained **HTML / JSON / Markdown reports** + SQLite scan history for release-over-release ASR trends
-- Model-agnostic providers: offline **mock** (deterministic, for CI), **Ollama**, any **OpenAI-compatible** endpoint, and the **Anthropic Messages API** — standard library only, zero pip dependencies
-- Committed **research write-up** with a real end-to-end run against llama3.2:3b (harness verified live; TAP pruning fires on real candidates), honest about where small-budget adaptation helps and where it doesn't
+- Every finding mapped to **MITRE ATLAS**, scored into a risk number, and turned into a **CI/CD gate** (non-zero exit) with a drop-in GitHub Actions workflow, a per-scan **query budget cap**, and **Slack-compatible webhook alerting** on a failed gate
+- Self-contained **HTML / JSON / Markdown reports** + SQLite scan history with `trend` (ASR over time) and `export` (CSV audit evidence) CLI commands
+- Model-agnostic providers with retry/backoff on transient failures: offline **mock** (deterministic, for CI), **Ollama**, any **OpenAI-compatible** endpoint, and the **Anthropic Messages API** — standard library only, zero pip dependencies
+- Committed **research write-up** reporting five independent real-model runs against llama3.2:3b as an aggregate rate rather than one cherry-picked sample — the honest finding is that TAP's pruning mechanism fires reliably every run even though which objective breaks is noisy at this budget
 
-`Python` `PAIR` `TAP` `Jailbreak Research` `MITRE ATLAS` `LLM Red-Teaming` `Adversarial ML` `CI/CD Security`
+`Python` `PAIR` `TAP` `Crescendo` `Jailbreak Research` `MITRE ATLAS` `LLM Red-Teaming` `Adversarial ML` `CI/CD Security`
 
-**Repo:** [github.com/harryc295/redforge](https://github.com/harryc295/redforge) · **[Full write-up](https://github.com/harryc295/redforge/blob/main/WRITEUP.md)**
+**Repo:** [github.com/harryc295/branchbreak](https://github.com/harryc295/branchbreak) · **[Full write-up](https://github.com/harryc295/branchbreak/blob/main/WRITEUP.md)**
 
 ---
 
