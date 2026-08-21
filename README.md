@@ -1,40 +1,23 @@
 # Harry Corcoran
-### Security Engineer & Full-Stack Developer | Bolton, UK
+### AI & Agent Security | Security Engineer & Full-Stack Developer | Bolton, UK
 
-> BSc (Hons) Cybersecurity — First-Class Predicted | Accelerated entry via APL
-> Targeting Cloud Security Engineering and long-term Security Architecture / CISO track roles.
+> BSc (Hons) Cybersecurity, first-class predicted. Accelerated entry via APL.
+> Found CVE-2025-49132 (CVSS 9.8) on a live engagement. 12 public repos in AI and agent security.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/harrycorcoran-cybersecurity)
-[![GitHub](https://img.shields.io/badge/GitHub-harryc295-181717?style=flat-square&logo=github)](https://github.com/harryc295)
-[![TryHackMe](https://img.shields.io/badge/TryHackMe-Cybersecurity%20101-red?style=flat-square&logo=tryhackme&logoColor=white)](https://tryhackme.com)
-[![HackTheBox](https://img.shields.io/badge/HackTheBox-Labs-9FEF00?style=flat-square&logo=hackthebox&logoColor=black)](https://hackthebox.com)
-[![Status](https://img.shields.io/badge/Status-Open%20to%20opportunities-brightgreen?style=flat-square&logo=checkmarx&logoColor=white)](mailto:corcoranharry2@gmail.com)
 [![Email](https://img.shields.io/badge/Email-corcoranharry2%40gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:corcoranharry2@gmail.com)
-[![Daily AWS Price Tracker](https://github.com/harryc295/Aws-price-tracker-Live-api/actions/workflows/daily-price.yml/badge.svg)](https://github.com/harryc295/Aws-price-tracker-Live-api/actions/workflows/daily-price.yml)
-[![CVE](https://img.shields.io/badge/CVE--2025--49132-CRITICAL%20CVSS%209.8-red?style=flat-square)](https://github.com/harryc295)
-[![Degree](https://img.shields.io/badge/BSc%20Cybersecurity-Predicted%201st%20Class-blue?style=flat-square)](https://github.com/harryc295)
-
----
-
-## Contents
-
-- [About](#about)
-- [Highlights](#highlights)
-- [Projects](#projects)
-- [Lab Environment](#lab-environment)
-- [Skills & Stack](#skills--stack)
-- [Experience](#experience)
-- [Education & Certifications](#education--certifications)
-- [GitHub Stats](#github-stats)
-- [What I'm Building Toward](#what-im-building-toward)
+[![CVE](https://img.shields.io/badge/Found%20in%20the%20wild-CVE--2025--49132%20(CVSS%209.8)-red?style=flat-square)](https://nvd.nist.gov/vuln/detail/CVE-2025-49132)
+[![Status](https://img.shields.io/badge/Status-Open%20to%20opportunities-brightgreen?style=flat-square)](mailto:corcoranharry2@gmail.com)
 
 ---
 
 ## About
 
-Security engineer and full-stack developer finishing a first-class cybersecurity degree, admitted directly into second year via Accredited Prior Learning. I find critical vulnerabilities, build regulated financial platforms, automate cloud infrastructure, and document everything properly.
+Final year of a first-class cybersecurity degree, entered at second year through Accreditation of Prior Learning.
 
-My work deliberately spans offensive security and cloud/infrastructure engineering — I think the strongest security engineers understand how systems break and build accordingly. Long-term I'm aiming for Cloud Security Engineering, then Security Architecture and CISO level.
+Most of the work below is AI and agent security: prompt injection, MCP tool poisoning, lethal-trifecta detection, automated jailbreak discovery. Twelve public repos sit in that area, alongside AWS IAM attack-path mapping and a C++ PE malware analyser.
+
+On an authorised engagement in June 2026 I found an undocumented client asset during subdomain recon and confirmed it vulnerable to CVE-2025-49132, an unauthenticated RCE scoring 9.8. Same engagement, 269 undocumented API endpoints. At Ideal4Finance I build the FCA DISP complaints platform on NestJS 11 and Next.js 16.
 
 ---
 
@@ -42,7 +25,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 | | |
 |---|---|
-| **riven** | Autonomous multi-agent LLM pentester — subagents PoC-validate every finding before it's reported, CVSS-score it. Human sign-off gates production exploitation. In development, building toward a commercial SaaS launch |
+| **ryvx** | Autonomous multi-agent LLM pentester — subagents PoC-validate every finding before it's reported, CVSS-score it. Human sign-off gates production exploitation. In development, building toward a commercial SaaS launch |
 | **branchbreak** | Automated LLM red-teaming platform — an attacker model that discovers jailbreaks via PAIR + TAP + Crescendo, maps findings to MITRE ATLAS, and gates CI/CD with query budgets, webhook alerting, and audit export. Runs offline or against Ollama / OpenAI / Anthropic |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code) — tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail |
@@ -64,7 +47,7 @@ My work deliberately spans offensive security and cloud/infrastructure engineeri
 
 ## Projects
 
-### 001 — riven — Autonomous Multi-Agent LLM Pentester
+### 001 — ryvx — Autonomous Multi-Agent LLM Pentester
 ![Status](https://img.shields.io/badge/status-in%20development-orange?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Multi--Agent-Orchestrator%20%2B%20Subagents-D97757?style=flat-square) ![Visibility](https://img.shields.io/badge/status-building%20toward%20SaaS-blueviolet?style=flat-square)
 
 Autonomous multi-agent LLM pentester: orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it's ever reported, with a CVSS score and a human approval gate ahead of any exploitation against a production target. Currently in private development, building toward a commercial SaaS launch — details under wraps until then.
@@ -718,8 +701,8 @@ University of Greater Manchester · 2024–2025
 
 ## What I'm Building Toward
 
-Near-term I'm targeting Cloud Security Engineering roles — the technical depth is there across AWS, Kubernetes, Terraform, and DevSecOps automation. Long-term the goal is Security Architecture and CISO level, so I'm building strategic thinking and governance understanding alongside the hands-on work.
+AI and agent security is where I want to work. The portfolio above reflects that: runtime guardrails, MCP governance, jailbreak discovery, agent privilege mapping. The cloud and IAM work underneath it is what makes the agent work credible, because an agent with AWS credentials is an IAM problem wearing a new hat.
 
-Currently working on: finishing the degree (first-class), continuing to expand BinaryHammer's feature set, extending the AWS price tracker toward Cost Explorer and Slack alerting, and working toward AZ-900 / SC-900 as the next credential milestones.
+Right now: finishing the degree, running ryvx against real targets to get a measured benchmark rather than a claim, and AZ-900 / SC-900 next.
 
-Open to graduate roles, placements, and mentorship — [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
+Open to graduate roles, placements and mentorship. [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
