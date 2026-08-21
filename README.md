@@ -21,6 +21,15 @@ On an authorised engagement in June 2026 I found an undocumented client asset du
 
 ---
 
+## Writing
+
+**[The scan crashed. The report said zero findings.](writeups/crashed-scan-clean-report.md)**
+A bug in my own scanner that reported a target clean after the root agent died
+at its first model call, across report.md, SARIF and a PR comment. Every module
+involved was individually correct, which is why review passed it.
+
+---
+
 ## Highlights
 
 | | |
