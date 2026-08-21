@@ -34,7 +34,7 @@ involved was individually correct, which is why review passed it.
 
 | | |
 |---|---|
-| **ryvx** | Autonomous multi-agent LLM pentester — subagents PoC-validate every finding before it's reported, CVSS-score it. Human sign-off gates production exploitation. In development, building toward a commercial SaaS launch |
+| **Ryvx** | [ryvx.dev](https://ryvx.dev) — autonomous AI penetration testing platform, shipping. Subagents PoC-validate every finding before it's reported and CVSS-score it; human sign-off gates production exploitation. 19 tools for live testing, 31 for code review, findings mapped to SOC 2 / ISO 27001 / PCI-DSS / NIST / CIS / CE+. Free desktop app and CLI |
 | **branchbreak** | Automated LLM red-teaming platform — an attacker model that discovers jailbreaks via PAIR + TAP + Crescendo, maps findings to MITRE ATLAS, and gates CI/CD with query budgets, webhook alerting, and audit export. Runs offline or against Ollama / OpenAI / Anthropic |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code) — tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers — registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail |
@@ -56,12 +56,20 @@ involved was individually correct, which is why review passed it.
 
 ## Projects
 
-### 001 — ryvx — Autonomous Multi-Agent LLM Pentester
-![Status](https://img.shields.io/badge/status-in%20development-orange?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Multi--Agent-Orchestrator%20%2B%20Subagents-D97757?style=flat-square) ![Visibility](https://img.shields.io/badge/status-building%20toward%20SaaS-blueviolet?style=flat-square)
+### 001 — Ryvx — Autonomous AI Penetration Testing Platform
+![Status](https://img.shields.io/badge/status-shipping-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Multi--Agent-Orchestrator%20%2B%20Subagents-D97757?style=flat-square) ![Site](https://img.shields.io/badge/ryvx.dev-live-blueviolet?style=flat-square)
 
-Autonomous multi-agent LLM pentester: orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it's ever reported, with a CVSS score and a human approval gate ahead of any exploitation against a production target. Currently in private development, building toward a commercial SaaS launch — details under wraps until then.
+Autonomous AI penetration testing with proof attached. Orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it is ever reported — CVSS-scored, audit-trailed, with a human approval gate ahead of any exploitation against a production target. Sole developer; shipping versioned Windows installers and a CLI.
 
-`Python` `Multi-Agent Orchestration` `Autonomous Pentesting` `AI Agent Security`
+- **19 tools for live target testing, 31 for source code review**, plus AI/LLM security testing and OSINT, each capability usable on its own
+- Findings mapped to **SOC 2, ISO 27001, PCI-DSS, NIST, CIS, and Cyber Essentials Plus**, so a scan produces compliance evidence rather than just a vulnerability list
+- **Malware reverse engineering inside a network-isolated QEMU microVM** — Ghidra, angr, capa, FLOSS, radare2 running in a container with dropped capabilities, guest image SHA-256 verified against a signed manifest before install, so samples never touch the host
+- Runs **locally via Ollama** or against frontier model APIs
+- Desktop app and CLI are free; hosted scanning runs on credit-based plans
+
+`Python` `Multi-Agent Orchestration` `Autonomous Pentesting` `AI Agent Security` `QEMU microVM Isolation` `Compliance Mapping`
+
+**Site:** [ryvx.dev](https://ryvx.dev) · **Downloads:** [github.com/harryc295/ryvx-downloads](https://github.com/harryc295/ryvx-downloads)
 
 ---
 
