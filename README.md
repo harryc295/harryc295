@@ -67,7 +67,7 @@ Autonomous AI penetration testing with proof attached. Orchestrator-spawned suba
 - Findings mapped to **SOC 2, ISO 27001, PCI-DSS, NIST, CIS, Cyber Essentials Plus and HIPAA**, so a scan produces compliance evidence rather than just a vulnerability list
 - **Malware reverse engineering inside a network-isolated QEMU microVM**: Ghidra, angr, capa, FLOSS, radare2 running in a container with dropped capabilities, guest image SHA-256 verified against a signed manifest before install, so samples never touch the host
 - Runs **locally via Ollama** or against frontier model APIs
-- Desktop app and CLI are free; hosted scanning runs on credit-based plans
+- Desktop app and CLI are free; hosted plans are listed on [ryvx.dev](https://ryvx.dev)
 
 `Python` `Multi-Agent Orchestration` `Autonomous Pentesting` `AI Agent Security` `QEMU microVM Isolation` `Compliance Mapping`
 
