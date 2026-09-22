@@ -37,7 +37,7 @@ involved was individually correct, which is why review passed it.
 
 | | |
 |---|---|
-| **Ryvx** | [ryvx.dev](https://ryvx.dev): autonomous AI penetration testing, live and shipped. Subagents PoC-validate every finding before it's reported and CVSS-score it; human sign-off gates production exploitation. 19 tools for live testing, 31 for code review, findings mapped to SOC 2 / ISO 27001 / PCI-DSS / NIST / CIS / CE+. Free desktop app and CLI |
+| **Ryvx** | [ryvx.dev](https://ryvx.dev): autonomous AI penetration testing, live and shipped. Subagents PoC-validate every finding before it's reported and CVSS-score it; human sign-off gates production exploitation. 25 tools for live testing, 34 for code review, findings mapped to SOC 2 / ISO 27001 / PCI-DSS / NIST / CIS / CE+ / HIPAA. Free desktop app and CLI |
 | **branchbreak** | Automated LLM red-teaming platform: an attacker model that discovers jailbreaks via PAIR + TAP + Crescendo, maps findings to MITRE ATLAS, and gates CI/CD with query budgets, webhook alerting, and audit export. Runs offline or against Ollama / OpenAI / Anthropic |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code): tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers: registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail |
@@ -63,8 +63,8 @@ involved was individually correct, which is why review passed it.
 
 Autonomous AI penetration testing with proof attached. Orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it is ever reported, CVSS-scored, audit-trailed, with a human approval gate ahead of any exploitation against a production target. Sole developer; shipping versioned Windows installers and a CLI.
 
-- **19 tools for live target testing, 31 for source code review**, plus AI/LLM security testing and OSINT, each capability usable on its own
-- Findings mapped to **SOC 2, ISO 27001, PCI-DSS, NIST, CIS, and Cyber Essentials Plus**, so a scan produces compliance evidence rather than just a vulnerability list
+- **25 tools for live target testing, 34 for source code review**, plus AI/LLM security testing and OSINT, each capability usable on its own
+- Findings mapped to **SOC 2, ISO 27001, PCI-DSS, NIST, CIS, Cyber Essentials Plus and HIPAA**, so a scan produces compliance evidence rather than just a vulnerability list
 - **Malware reverse engineering inside a network-isolated QEMU microVM**: Ghidra, angr, capa, FLOSS, radare2 running in a container with dropped capabilities, guest image SHA-256 verified against a signed manifest before install, so samples never touch the host
 - Runs **locally via Ollama** or against frontier model APIs
 - Desktop app and CLI are free; hosted scanning runs on credit-based plans
