@@ -374,37 +374,7 @@ Serverless auto-remediation engine that detects and fixes four high-priority CIS
 
 ---
 
-### 020. Cloud Native Platform *(University)*
-![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Type](https://img.shields.io/badge/type-cloud%20engineering-blueviolet?style=flat-square) ![K8s](https://img.shields.io/badge/Kubernetes-Minikube%20%2B%20K3s-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-
-Three-tier application deployed on Kubernetes with full observability, serverless compute, edge simulation, and zero-trust RBAC architecture.
-
-- Kubernetes (Minikube) with Deployments, PVCs, Services, and Network Policies
-- Zero-trust: RBAC + Network Policies enforcing least-privilege access between pods
-- Prometheus + Grafana via Helm, OpenFaaS serverless functions, K3s edge simulation
-
-`Kubernetes` `Docker` `Terraform` `Prometheus` `Grafana` `OpenFaaS` `K3s` `Helm` `RBAC`
-
-**Repo:** [github.com/harryc295/COM5408-cloud-project](https://github.com/harryc295/COM5408-cloud-project)
-
----
-
-### 021. Enterprise Complaints Management System *(Private: Commercial)*
-![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private%20%2F%20commercial-lightgrey?style=flat-square)
-
-End-to-end complaints management platform built for a regulated financial services client. Handles full case lifecycle, intake, triage, investigation, resolution, and audit, with strict access controls and compliance requirements baked into the architecture.
-
-- Multi-role workflow engine with configurable escalation paths and SLA tracking
-- Immutable audit log with cryptographic evidence integrity
-- Secure document handling and case history across all resolution stages
-
-`TypeScript` `NestJS` `Next.js` `PostgreSQL` `Docker`
-
-*(Repository private, commercial project)*
-
----
-
-### 022. websec-assess: Web Application Security Assessment Platform
+### 020. websec-assess: Web Application Security Assessment Platform
 ![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-offensive%20security-red?style=flat-square)
 
 Modular CLI platform for authorised web application security assessments, reconnaissance, content discovery, vulnerability checks, and opt-in injection-indicator scanning, built on a plugin architecture with an async scan engine.
@@ -422,7 +392,7 @@ Modular CLI platform for authorised web application security assessments, reconn
 
 ---
 
-### 023. BinaryHammer: PE Malware Analysis Tool
+### 021. BinaryHammer: PE Malware Analysis Tool
 ![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Type](https://img.shields.io/badge/type-malware%20analysis-darkred?style=flat-square)
 
 Open-source C++ tool for static PE malware analysis, loads any Windows executable and surfaces disassembly, pseudo-code, imports/exports, hex view, strings, and a scored threat summary. Built to cut manual overhead so analysis time goes on decisions, not mechanics.
@@ -439,59 +409,11 @@ Open-source C++ tool for static PE malware analysis, loads any Windows executabl
 
 ---
 
-### 024. Enterprise Active Directory Lab *(University)*
-![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white) ![AD](https://img.shields.io/badge/Active%20Directory-Two--Domain%20Forest-0078D4?style=flat-square&logo=windows&logoColor=white)
+### More projects
 
-Two-domain Active Directory forest simulating an enterprise network with RBAC, cross-platform authentication, automated deployment, and validated security controls.
-
-- Root domain bolton.local / child domain derby.bolton.local, demonstrating domains as security boundaries
-- Windows Server 2022 DCs + Ubuntu Desktop joined via realmd/SSSD with full Kerberos authentication
-- Fine-Grained Password Policies, RBAC security groups, GPOs with documented risk rationale
-- PowerShell DSC automated deployment + 12 Pester validation tests
-
-`Active Directory` `PowerShell DSC` `Kerberos` `SSSD` `Group Policy` `RBAC` `Pester`
-
-**Repo:** [github.com/harryc295/BarmBuzz](https://github.com/harryc295/BarmBuzz)
-
----
-
-### 025. Benji Protocol: Offensive Security Toolkit *(University)*
-![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Type](https://img.shields.io/badge/type-pentest%20toolkit-red?style=flat-square)
-
-Four-tool CLI security toolkit built across a five-week assessed penetration testing module. Fully headless and automatable via argparse.
-
-| Tool | Script | Purpose |
-|---|---|---|
-| Evidence Collector | log_parser.py | Parses auth.log for failed SSH/login attempts, outputs CSV |
-| Network Cartographer | scan.py | Multi-threaded TCP port scanner with banner grabbing |
-| Access Validator | brute.py | Targeted SSH/FTP credential tester with mandatory delay |
-| Web Enumerator | web_enum.py | HTTP recon, header analysis, path enumeration, comment scraping |
-
-`Python` `argparse` `Sockets` `Paramiko` `Requests` `Offensive Security`
-
-**Repo:** [github.com/harryc295/COM5413_Security_Portfolio](https://github.com/harryc295/COM5413_Security_Portfolio)
-
----
-
-### 026. ColdVault: Offline Password Manager
-![Status](https://img.shields.io/badge/status-complete-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![Crypto](https://img.shields.io/badge/AES--256--GCM-Zero%20Knowledge-green?style=flat-square) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
-
-Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-screen UI, multi-vault support, auto-lock, PrintScreen blocking, secure clipboard clearing, password generation, and organised login/card/note management.
-
-`Python` `AES-256-GCM` `PBKDF2` `Cryptography` `SQLite` `Zero-Knowledge`
-
-**Repo:** private
-
----
-
-### 027. Untangle: Productivity App
-![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square) ![Language](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) ![Visibility](https://img.shields.io/badge/visibility-private-lightgrey?style=flat-square)
-
-"Analyse to action", a clarity method productivity app built in TypeScript. Designed to help turn messy thinking into structured action.
-
-`TypeScript`
-
-**Repo:** private
+- **Cloud Native Platform** *(University)*: three-tier app on Kubernetes with zero-trust RBAC and Network Policies, Prometheus + Grafana, OpenFaaS and a K3s edge simulation. [Repo](https://github.com/harryc295/COM5408-cloud-project)
+- **Enterprise Active Directory Lab** *(University)*: two-domain AD forest with Ubuntu joined over Kerberos/SSSD, fine-grained password policies, and PowerShell DSC deployment checked by 12 Pester tests. [Repo](https://github.com/harryc295/BarmBuzz)
+- **Benji Protocol** *(University)*: four-tool Python pentest toolkit (log parser, port scanner, SSH/FTP credential tester, web enumerator), fully scriptable from the CLI.
 
 ---
 
