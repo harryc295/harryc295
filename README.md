@@ -4,12 +4,12 @@
 > Sole developer of **[Ryvx](https://ryvx.dev)**: autonomous AI penetration testing that
 > refuses to file a finding unless it proved it with a working exploit. Live now as a hosted
 > platform, a signed desktop app and a CLI.
-> Found CVE-2025-49132 (CVSS 9.8) on a live engagement. 24 public repos, most of them
+> Found a live client asset vulnerable to CVE-2025-49132 (CVSS 9.8) on an authorised pentest. 24 public repos, most of them
 > AI and agent security.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/harrycorcoran-cybersecurity)
 [![Email](https://img.shields.io/badge/Email-corcoranharry2%40gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:corcoranharry2@gmail.com)
-[![CVE](https://img.shields.io/badge/Found%20in%20the%20wild-CVE--2025--49132%20(CVSS%209.8)-red?style=flat-square)](https://nvd.nist.gov/vuln/detail/CVE-2025-49132)
+[![CVE](https://img.shields.io/badge/Found%20on%20a%20live%20pentest-CVE--2025--49132%20(CVSS%209.8)-red?style=flat-square)](https://nvd.nist.gov/vuln/detail/CVE-2025-49132)
 [![Status](https://img.shields.io/badge/Status-Open%20to%20opportunities-brightgreen?style=flat-square)](mailto:corcoranharry2@gmail.com)
 
 ---
