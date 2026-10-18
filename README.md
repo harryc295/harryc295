@@ -626,6 +626,9 @@ Personal cyber range running on VirtualBox, used daily for AD deployment, malwar
 
 ## Experience
 
+**Founder, Ryvx** *(Jul 2026, Present)*
+Designed, built and run [Ryvx](https://ryvx.dev) alone: autonomous penetration testing, AI agent red-teaming, compliance checks and local reverse engineering, sold as four products on one engine. A finding only reaches the report with a working proof of concept, and a human signs off before any exploit touches production. Hosted platform (Next.js, Supabase), signed Windows desktop app (Tauri) and CLI (Python).
+
 **Software Engineer (Part-time), Ideal4Finance** *(Sep 2026, Present)*
 Own three production systems end to end on Google Cloud: an insurance renewal platform, an FCA DISP-regulated complaints system and a multi-tenant file-upload service. Hardened the server, set up monitoring, tiered backups with restore tests, and CI with dependency and secret scanning.
 
@@ -638,7 +641,7 @@ Built the FCA DISP-aligned complaints platform from the ground up: architecture,
 **Penetration Tester, Authorised Client Engagement** *(June 2026)*
 Full-scope black-box test across web, subdomains, and four cloud-hosted targets. Discovered an undocumented client asset during recon and confirmed it vulnerable to CVE-2025-49132 (Critical CVSS 9.8) using public exploit tooling; enumerated 269 undocumented endpoints; full OAuth2 audit. Delivered 18-page executive and technical report with remediation roadmap.
 
-**Kitchen Porter / Bar Back, Lytham House** *(2021, 2024)*
+**Kitchen Porter / Bar Back, Lytham House** *(2021 to 2024)*
 Three years in a high-pressure hospitality environment. Teamwork, reliability, and communication under pressure.
 
 ---
@@ -661,8 +664,6 @@ University of Greater Manchester · 2024–2025
 ![HTB](https://img.shields.io/badge/Hack%20The%20Box-Security%20Labs-9FEF00?style=flat-square&logo=hackthebox&logoColor=black)
 ![PortSwigger](https://img.shields.io/badge/PortSwigger-Burp%20Suite%20Academy-FF6633?style=flat-square&logo=burpsuite&logoColor=white)
 ![OWASP](https://img.shields.io/badge/OWASP-Top%2010%20%26%20API%20Security-000000?style=flat-square&logo=owasp&logoColor=white)
-![AZ900](https://img.shields.io/badge/AZ--900-In%20Progress-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
-![SC900](https://img.shields.io/badge/SC--900-In%20Progress-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
 
 ---
 
