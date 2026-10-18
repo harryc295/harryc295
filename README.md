@@ -4,7 +4,7 @@
 > Sole developer of **[Ryvx](https://ryvx.dev)**: autonomous AI penetration testing that
 > refuses to file a finding unless it proved it with a working exploit. Live now as a hosted
 > platform, a signed desktop app and a CLI.
-> Found CVE-2025-49132 (CVSS 9.8) on a live engagement. 23 public repos, most of them
+> Found CVE-2025-49132 (CVSS 9.8) on a live engagement. 24 public repos, most of them
 > AI and agent security.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/harrycorcoran-cybersecurity)
@@ -20,7 +20,7 @@ Final year of a first-class cybersecurity degree, entered at second year through
 
 Most of the work below is AI and agent security: prompt injection, MCP tool poisoning, lethal-trifecta detection, automated jailbreak discovery. Twelve public repos sit in that area, alongside AWS IAM attack-path mapping and a C++ PE malware analyser.
 
-On an authorised engagement in June 2026 I found an undocumented client asset during subdomain recon and confirmed it vulnerable to CVE-2025-49132, an unauthenticated RCE scoring 9.8. Same engagement, 269 undocumented API endpoints. At Ideal4Finance I am a part-time Software Engineer running three production systems, including the FCA DISP complaints platform on NestJS 11 and Next.js 16.
+On an authorised engagement in June 2026 I found an undocumented client asset during subdomain recon and confirmed it vulnerable to CVE-2025-49132, an unauthenticated RCE scoring 9.8. Same engagement, 269 undocumented API endpoints. At Ideal4Finance I am a part-time Software Engineer running three production systems, including the FCA DISP complaints platform on NestJS 11 and Next.js 16. Since September I've also interned at Soup, reviewing the job and storage code in its desktop app and running its Windows QA.
 
 ---
 
@@ -46,13 +46,14 @@ involved was individually correct, which is why review passed it.
 | **CVE-2025-49132** | Discovered an undocumented client asset during a private pentest's subdomain enumeration and confirmed it vulnerable to this critical unauthenticated Pterodactyl Panel RCE (CVSS 9.8), verified with public exploit tooling |
 | **269** | Previously undocumented API endpoints enumerated in a single authorised engagement |
 | **Ideal4Finance** | Software Engineer (promoted from intern): three production systems on GCP, including an FCA DISP-regulated complaints platform on NestJS 11 + Next.js 16 |
+| **Soup** | Software Engineering Intern on Soup Zero, a desktop app for local LLM fine-tuning: 10 merged PRs making job and config storage survive crashes and corrupt files, plus code reviews and Windows QA. Upstream, my [PR #1051](https://github.com/MakazhanAlpamys/Soup/pull/1051) to the open-source Soup CLI added a script that keeps the recipe count in sync across its docs |
 | **Cloud Native** | Kubernetes, Terraform, OpenFaaS, Prometheus/Grafana, deployed on Minikube + K3s edge |
 | **AWS CIS Auto-Remediation** | EventBridge → Lambda engine auto-fixes CIS Benchmark findings every 6 hours, Terraform-deployed |
 | **IAM Attack-Path Mapper** | Graphs AWS IAM privilege-escalation paths: ~12 known techniques, interactive attack graph, CIS/NIST-mapped findings |
 | **CloudTrail Privesc Detector** | Watches live CloudTrail activity for the same techniques actually being used, plus credential-theft correlation, pairs with the IAM mapper above |
 | **decoygraph** | Places decoy AWS resources directly on the IAM escalation paths an attacker is most likely to walk, then re-ranks and redeploys live via CloudTrail when one gets touched |
 | **BinaryHammer** | Open-source C++ PE malware analysis tool: Zydis disassembly, entropy, YARA, threat scoring, onboarding UI |
-| **23 public repos** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
+| **24 public repos** | Across AI agent/LLM security, offensive security, cloud, full-stack, infrastructure automation, and malware analysis |
 
 ---
 
@@ -627,6 +628,9 @@ Personal cyber range running on VirtualBox, used daily for AD deployment, malwar
 
 **Software Engineer (Part-time), Ideal4Finance** *(Sep 2026, Present)*
 Own three production systems end to end on Google Cloud: an insurance renewal platform, an FCA DISP-regulated complaints system and a multi-tenant file-upload service. Hardened the server, set up monitoring, tiered backups with restore tests, and CI with dependency and secret scanning.
+
+**Software Engineering Intern, Soup** *(Sep 2026, Present)*
+Soup Zero is a desktop app (Tauri 2 + React, Python FastAPI sidecar) for fine-tuning LLMs on your own machine. I review the job and persistence code and run the Windows QA. Ten merged PRs so far: a corrupt config or job history gets set aside instead of overwritten, training processes stop when the app exits, and job state writes fsync around the file replace. I wrote the data-migration design the team signed off, and built the Windows installer for the installed-app tests. Also contributed to the open-source [Soup CLI](https://github.com/MakazhanAlpamys/Soup) (PR #1051, merged).
 
 **Software Engineer Intern, Ideal4Finance** *(May 2026, Sep 2026)*
 Built the FCA DISP-aligned complaints platform from the ground up: architecture, security implementation and CI pipeline. NestJS 11 + Next.js 16 + PostgreSQL + Docker.
