@@ -480,7 +480,7 @@ Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-s
 
 `Python` `AES-256-GCM` `PBKDF2` `Cryptography` `SQLite` `Zero-Knowledge`
 
-**Repo:** [github.com/harryc295/Python-Vault](https://github.com/harryc295/Python-Vault) *(private)*
+**Repo:** private
 
 ---
 
@@ -491,7 +491,7 @@ Secure offline password manager using AES-256-GCM and PBKDF2-HMAC-SHA256. Full-s
 
 `TypeScript`
 
-**Repo:** [github.com/harryc295/untangle](https://github.com/harryc295/untangle) *(private)*
+**Repo:** private
 
 ---
 
@@ -683,6 +683,6 @@ University of Greater Manchester · 2024–2025
 
 AI and agent security is where I want to work. The portfolio above reflects that: runtime guardrails, MCP governance, jailbreak discovery, agent privilege mapping. The cloud and IAM work underneath it is what makes the agent work credible, because an agent with AWS credentials is an IAM problem wearing a new hat.
 
-Right now: finishing the degree, running ryvx against real targets to get a measured benchmark rather than a claim, and AZ-900 / SC-900 next.
+Right now: finishing the degree, interning at Soup, and running Ryvx against real targets to get a measured benchmark rather than a claim.
 
 Open to graduate roles, placements and mentorship. [linkedin.com/in/harrycorcoran-cybersecurity](https://linkedin.com/in/harrycorcoran-cybersecurity) or corcoranharry2@gmail.com.
