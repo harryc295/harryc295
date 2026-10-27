@@ -2,8 +2,8 @@
 ### AI & Agent Security | Bolton, UK
 
 > Sole developer of **[Ryvx](https://ryvx.dev)**: autonomous AI penetration testing that
-> refuses to file a finding unless it proved it with a working exploit. Live now as a hosted
-> platform, a signed desktop app and a CLI.
+> refuses to file a finding unless it proved it with a working exploit. Live now as a £495
+> fixed-price security review for UK businesses, with every report checked by me.
 > Found a live client asset vulnerable to CVE-2025-49132 (CVSS 9.8) on an authorised pentest. 24 public repos, most of them
 > AI and agent security.
 
@@ -37,7 +37,7 @@ involved was individually correct, which is why review passed it.
 
 | | |
 |---|---|
-| **Ryvx** | [ryvx.dev](https://ryvx.dev): autonomous AI penetration testing, live and shipped. Subagents PoC-validate every finding before it's reported and CVSS-score it; human sign-off gates production exploitation. 25 tools for live testing, 34 for code review, findings mapped to SOC 2 / ISO 27001 / PCI-DSS / NIST / CIS / CE+ / HIPAA. Free desktop app and CLI |
+| **Ryvx** | [ryvx.dev](https://ryvx.dev): autonomous AI penetration testing, live and shipped. Subagents PoC-validate every finding before it's reported and CVSS-score it; human sign-off gates production exploitation. 25 tools for live testing, 34 for code review, findings mapped to SOC 2 / ISO 27001 / PCI-DSS / NIST / CIS / CE+ / HIPAA. Sold as a £495 fixed-price review |
 | **branchbreak** | Automated LLM red-teaming platform: an attacker model that discovers jailbreaks via PAIR + TAP + Crescendo, maps findings to MITRE ATLAS, and gates CI/CD with query budgets, webhook alerting, and audit export. Runs offline or against Ollama / OpenAI / Anthropic |
 | **agent-airlock** | Runtime security hook for AI coding agents (Claude Code): tracks per-session taint and blocks the "lethal trifecta" exfiltration as it forms. Red-team demo + eval: 100% detection, 0% false positives on a 24-session corpus |
 | **fleetwatch** | Governance control plane for a fleet of AI agents and MCP servers: registry, tool-schema drift (rug-pull) detection, policy-as-code, audit trail |
@@ -62,17 +62,17 @@ involved was individually correct, which is why review passed it.
 ### 001. Ryvx: Autonomous AI Penetration Testing Platform
 ![Status](https://img.shields.io/badge/status-shipping-brightgreen?style=flat-square) ![Language](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54) ![AI](https://img.shields.io/badge/Multi--Agent-Orchestrator%20%2B%20Subagents-D97757?style=flat-square) ![Site](https://img.shields.io/badge/ryvx.dev-live-blueviolet?style=flat-square)
 
-Autonomous AI penetration testing with proof attached. Orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it is ever reported, CVSS-scored, audit-trailed, with a human approval gate ahead of any exploitation against a production target. Sole developer; shipping versioned Windows installers and a CLI.
+Autonomous AI penetration testing with proof attached. Orchestrator-spawned subagents recon a target, hunt for vulnerabilities, and validate every finding against a working proof-of-concept before it is ever reported, CVSS-scored, audit-trailed, with a human approval gate ahead of any exploitation against a production target. Sole developer. Sold as a £495 fixed-price security review for UK businesses, and I check every report before it goes out.
 
 - **25 tools for live target testing, 34 for source code review**, plus AI/LLM security testing and OSINT, each capability usable on its own
 - Findings mapped to **SOC 2, ISO 27001, PCI-DSS, NIST, CIS, Cyber Essentials Plus and HIPAA**, so a scan produces compliance evidence rather than just a vulnerability list
 - **Malware reverse engineering inside a network-isolated QEMU microVM**: Ghidra, angr, capa, FLOSS, radare2 running in a container with dropped capabilities, guest image SHA-256 verified against a signed manifest before install, so samples never touch the host
-- Runs **locally via Ollama** or against frontier model APIs
-- Desktop app and CLI are free; hosted plans are listed on [ryvx.dev](https://ryvx.dev)
+- Tests AI chatbots and agents too: prompt injection and 8 of the 10 OWASP risks for LLM applications
+- £495 per site for a review, £100 a month for Monthly Monitoring: [ryvx.dev](https://ryvx.dev)
 
 `Python` `Multi-Agent Orchestration` `Autonomous Pentesting` `AI Agent Security` `QEMU microVM Isolation` `Compliance Mapping`
 
-**Site:** [ryvx.dev](https://ryvx.dev) · **Downloads:** [github.com/harryc295/ryvx-downloads](https://github.com/harryc295/ryvx-downloads)
+**Site:** [ryvx.dev](https://ryvx.dev)
 
 ---
 
@@ -549,7 +549,7 @@ Personal cyber range running on VirtualBox, used daily for AD deployment, malwar
 ## Experience
 
 **Founder, Ryvx** *(Jul 2026, Present)*
-Designed, built and run [Ryvx](https://ryvx.dev) alone: autonomous penetration testing, AI agent red-teaming, compliance checks and local reverse engineering, sold as four products on one engine. A finding only reaches the report with a working proof of concept, and a human signs off before any exploit touches production. Hosted platform (Next.js, Supabase), signed Windows desktop app (Tauri) and CLI (Python).
+Designed, built and run [Ryvx](https://ryvx.dev) alone: AI penetration testing for UK businesses, sold as a £495 fixed-price security review and Monthly Monitoring. A finding only reaches the report with a working proof of concept, I check every report before the customer sees it, and nothing that could change data runs without the customer's written agreement. Built on Next.js, Supabase and a Python agent engine.
 
 **Software Engineer (Part-time), Ideal4Finance** *(Sep 2026, Present)*
 Own three production systems end to end on Google Cloud: an insurance renewal platform, an FCA DISP-regulated complaints system and a multi-tenant file-upload service. Hardened the server, set up monitoring, tiered backups with restore tests, and CI with dependency and secret scanning.
